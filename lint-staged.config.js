@@ -1,5 +1,7 @@
 module.exports = {
-  '**/*.ts?(x)': () => 'yarn check-format',
-  '**/*.{js?(x),ts?(x)}': () => 'yarn check-lint',
-  '*/*.{js,jsx,ts,tsx,html,css,json}': () => 'yarn format',
+  '**/*.(ts|tsx|js)': (filenames) => [
+    `yarn eslint --fix ${filenames.join(' ')}`,
+    `yarn prettier --write ${filenames.join(' ')}`,
+  ],
+  '**/*.(md|json)': (filenames) => `yarn prettier --write ${filenames.join(' ')}`,
 };
