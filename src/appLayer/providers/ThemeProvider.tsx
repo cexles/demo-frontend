@@ -1,11 +1,29 @@
-import React from 'react';
+'use client';
+
+import React, { useLayoutEffect, useState } from 'react';
+
 import ThemeContext from '@/appLayer/context/ThemeContext';
-import useTheme from '@/shared/lib/theme/useTheme';
 
 function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const { theme } = useTheme();
+  const [theme, setTheme] = useState(localStorage.getItem('app-theme') || 'light');
 
-  return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
+  const handleChangeTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
+
+  useLayoutEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('app-theme', theme);
+  }, [theme]);
+
+  return (
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
+    <ThemeContext.Provider value={{ theme, handleChangeTheme }}>{children}</ThemeContext.Provider>
+  );
 }
 
 export default ThemeProvider;

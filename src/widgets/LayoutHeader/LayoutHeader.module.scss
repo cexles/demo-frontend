@@ -1,0 +1,51 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.header {
+  max-width: 1248px;
+  width: 100%;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+
+  @media (max-width: 1348px) {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
+  @include mobile {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}
+
+.logo {
+  margin-right: 16px;
+
+  @include mobile {
+    margin-right: 8px;
+    width: 92px;
+  }
+}
+
+.link {
+  padding: 4px 12px;
+  color: $neon;
+  border: 1px solid $neon;
+  font-size: 12px;
+  line-height: 15px;
+  transition: 0.4s;
+
+  &:hover {
+    opacity: 0.4;
+  }
+
+  @include mobile {
+    padding: 2px 8px;
+    font-size: 9px;
+    line-height: 12px;
+  }
+}

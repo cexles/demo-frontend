@@ -1,12 +1,13 @@
-'use client';
-
 import Link from 'next/link';
+import LayoutHeader from '@/widgets/LayoutHeader/LayoutHeader';
+
 import styles from './styles.module.scss';
 
 export default function Index() {
   return (
     <div className={styles.page}>
       <div className={styles.container}>
+        <LayoutHeader />
         <main className={styles.main}>
           <h1 className={styles.title}>What we will do?</h1>
           <p className={styles.subtitle}>😉 Try one of our prompts!</p>
