@@ -1,0 +1,125 @@
+@import 'fonts/fonts.css';
+@import 'styles/index';
+
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  font-family: 'TT Firs Neue', Arial, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+}
+
+#root {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+html[data-theme='dark'] body {
+  background: #8790dd;
+}
+html[data-theme='dark'] {
+  --text-color: #ffffff;
+
+  --welcome-page-background: radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(135, 144, 221, 0.3) 0%,
+        rgba(135, 144, 221, 0) 100%
+      )
+      right top / 40% 40% no-repeat,
+    radial-gradient(50% 50% at 50% 50%, rgba(178, 75, 222, 0.3) 0%, rgba(178, 75, 222, 0) 100%) -20%
+      110% / 55% 55% no-repeat,
+    linear-gradient(#0c1033, #0c1033);
+
+  --main-page-background: url(../../public/bg/background.png) center 0 / cover,
+    linear-gradient(#0c1033, #0c1033);
+
+  --chat-background: url(../../public/bg/chat-background.png),
+    linear-gradient(rgba(5, 7, 30, 1), rgba(5, 7, 30, 1));
+
+  --message-border: 1px solid rgba(255, 255, 255, 0.1);
+  --bot-message-background: transparent;
+  --user-message-background: rgba(255, 255, 255, 0.05);
+  --input-border: rgba(255, 255, 255, 0.4);
+  --input-focus-border: rgba(255, 255, 255);
+  --input-hover-border: rgba(255, 255, 255, 0.2);
+  --select-menu-color: #0c1033;
+  --select-option-focused: rgba(255, 255, 255, 0.1);
+  --avatar-background: rgba(255, 255, 255, 0.1);
+  --time-color: rgba(255, 255, 255, 0.5);
+  --loader-color: rgba(255, 255, 255, 0.5);
+
+  --follow-us-background: rgba(255, 255, 255, 0.05);
+  --follow-us-color: rgba(255, 255, 255, 0.7);
+
+  --link-background-color: rgba(255, 255, 255, 0.1);
+  --arrow-background-image: url(../../public/icons/arrow.svg);
+  --footer-link-color: rgba(255, 255, 255, 0.5);
+  --download-icon-background-image: url(../../public/icons/download.svg);
+
+  --switch-background: #0c1033;
+  --switch-input-selected: rgba(135, 144, 221, 1);
+
+  --close-button-background-image: url(../../public/icons/close-button.svg);
+  --modal-window-background: #070a29;
+
+  --tooltip-background-color: #010417;
+  --tooltip-filter: drop-shadow(0px 0px 1px rgba(26, 32, 36, 0.32))
+    drop-shadow(0px 8px 16px rgba(91, 104, 113, 0.24));
+}
+
+html[data-theme='light'] {
+  --text-color: #0c1033;
+
+  --welcome-page-background: radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(135, 144, 221, 0.3) 0%,
+        rgba(135, 144, 221, 0) 100%
+      )
+      right top / 40% 40% no-repeat,
+    radial-gradient(50% 50% at 50% 50%, rgba(178, 75, 222, 0.3) 0%, rgba(178, 75, 222, 0) 100%) -20%
+      110% / 55% 55% no-repeat,
+    linear-gradient(#fbfbfd, #fbfbfd);
+
+  --main-page-background: url(../../public/bg/background-light.png) center 0 / cover,
+    linear-gradient(#fbfbfd, #fbfbfd);
+
+  --chat-background: url(../../public/bg/chat-background-light.png),
+    linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+
+  --message-border: 1px solid rgba(12, 16, 51, 0.1);
+  --bot-message-background: #ffffff;
+  --user-message-background: #efeff1;
+  --input-border: rgba(12, 16, 51, 0.4);
+  --input-focus-border: rgba(135, 144, 221, 0.8);
+  --input-hover-border: rgba(12, 16, 51, 0.2);
+  --select-menu-color: #ffffff;
+  --select-option-focused: rgba(12, 16, 51, 0.05);
+  --avatar-background: rgba(12, 16, 51, 0.05);
+  --time-color: rgba(12, 16, 51, 0.5);
+  --loader-color: rgba(12, 16, 51, 0.5);
+
+  --follow-us-background: rgba(12, 16, 51, 0.05);
+  --follow-us-color: rgba(12, 16, 51, 0.7);
+
+  --link-background-color: rgba(12, 16, 51, 0.05);
+  --arrow-background-image: url(../../public/icons/arrow-dark.svg);
+  --footer-link-color: rgba(12, 16, 51, 0.5);
+  --download-icon-background-image: url(../../public/icons/download-dark.svg);
+
+  --switch-background: #ffffff;
+  --switch-input-selected: rgba(135, 144, 221, 0.2);
+
+  --close-button-background-image: url(../../public/icons/close-button-dark.svg);
+  --modal-window-background: #efeff1;
+
+  --tooltip-background-color: #ffffff;
+  --tooltip-filter: drop-shadow(0px 0px 1px rgba(26, 32, 36, 0.32))
+    drop-shadow(0px 8px 16px rgba(91, 104, 113, 0.24));
+}

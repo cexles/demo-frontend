@@ -1,0 +1,91 @@
+@import 'breakpoints';
+
+.custom-select__control {
+  padding: 8px 24px !important;
+  min-height: auto !important;
+  cursor: pointer !important;
+  background-color: transparent !important;
+  border: 1px solid !important;
+  border-color: var(--input-border) !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  transition: 0.4s !important;
+  gap: 16px !important;
+}
+
+.custom-select__control:hover {
+  border-color: var(--input-hover-border) !important;
+}
+
+.custom-select__control--is-focused:hover {
+  border-color: var(--input-focus-border) !important;
+}
+
+.custom-select__control--menu-is-open {
+  border-color: var(--input-focus-border) !important;
+}
+
+.custom-select__value-container {
+  padding: 0 !important;
+}
+
+.custom-select__single-value {
+  color: var(--text-color) !important;
+  font-weight: 500 !important;
+}
+
+.custom-select__indicator-separator {
+  display: none !important;
+}
+
+.custom-select__menu {
+  background: var(--select-menu-color) !important;
+}
+
+.custom-select__option {
+  cursor: pointer !important;
+  background-color: transparent !important;
+}
+
+.custom-select__option--is-focused {
+  background-color: var(--select-option-focused) !important;
+}
+
+.custom-select__indicator {
+  padding: 0 !important;
+  transition: all 0.2s !important;
+}
+
+.custom-select__control--menu-is-open {
+  .custom-select__dropdown-indicator {
+    transform: rotate(-180deg) !important;
+  }
+}
+
+.custom-select__label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--text-color) !important;
+
+  img {
+    width: 20px;
+  }
+}
+
+@media (max-width: 680px) {
+  .custom-select__single-value {
+    font-size: 18px !important;
+    line-height: 22px !important;
+  }
+
+  .custom-select__control {
+    padding: 10px 16px !important;
+  }
+}
+
+.my-tooltip {
+  color: var(--text-color) !important;
+  background-color: var(--tooltip-background-color) !important;
+  filter: var(--tooltip-filter) !important;
+}
