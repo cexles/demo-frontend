@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import LayoutHeader from '@/widgets/LayoutHeader/LayoutHeader';
 
+import LayoutFooter from '@/widgets/LayoutFooter/LayoutFooter';
 import styles from './styles.module.scss';
 
-export default function Index() {
+function Index() {
   return (
     <div className={styles.page}>
       <div className={styles.container}>
@@ -38,7 +39,10 @@ export default function Index() {
             </li>
           </ul>
         </main>
+        <LayoutFooter />
       </div>
     </div>
   );
 }
+
+export default Index;
