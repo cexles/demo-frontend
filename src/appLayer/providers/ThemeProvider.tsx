@@ -1,23 +1,30 @@
 'use client';
 
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 
 import ThemeContext from '@/appLayer/context/ThemeContext';
 
 function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState(localStorage.getItem('app-theme') || 'light');
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setTheme(localStorage.getItem('app-theme') || 'light');
+    }
+  }, []);
 
   const handleChangeTheme = () => {
     if (theme === 'light') {
       setTheme('dark');
+      localStorage.setItem('app-theme', 'dark');
     } else {
       setTheme('light');
+      localStorage.setItem('app-theme', 'light');
     }
   };
 
   useLayoutEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('app-theme', theme);
   }, [theme]);
 
   return (
