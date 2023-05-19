@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import LayoutHeader from '@/widgets/LayoutHeader/LayoutHeader';
 
+import LayoutHeader from '@/widgets/LayoutHeader/LayoutHeader';
 import LayoutFooter from '@/widgets/LayoutFooter/LayoutFooter';
+
 import styles from './styles.module.scss';
 
 function Index() {
