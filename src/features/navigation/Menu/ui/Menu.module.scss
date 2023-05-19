@@ -1,0 +1,11 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.nav {
+  display: flex;
+  gap: 24px;
+
+  @include screen_1200 {
+    display: none;
+  }
+}

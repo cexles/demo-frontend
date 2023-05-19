@@ -1,14 +1,27 @@
 @import './src/appLayer/styles/colors';
 @import './src/appLayer/styles/breakpoints';
 
-.header {
-  max-width: 1248px;
+.headerMain {
+  position: absolute;
+  z-index: 1;
   width: 100%;
-  padding-top: 32px;
-  padding-bottom: 32px;
+
+}
+
+.headerOrder {
+  background: var(--header-background);
+  box-shadow: inset 0px -1px 0px rgba(135, 144, 221, 0.1);
+}
+
+.headerWrapper {
+  max-width: 1248px;
+  height: 70px;
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: auto auto 1fr;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 
   @media (max-width: 1348px) {
@@ -23,11 +36,18 @@
 }
 
 .logo {
-  margin-right: 16px;
+  @include mobile {
+    width: 92px;
+  }
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 
   @include mobile {
-    margin-right: 8px;
-    width: 92px;
+    gap: 8px;
   }
 }
 
