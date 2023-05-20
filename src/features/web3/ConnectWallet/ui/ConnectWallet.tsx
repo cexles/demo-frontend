@@ -7,7 +7,7 @@ import { useEthers } from '@usedapp/core';
 import ConnectWalletStyles from './ConnectWallet.module.scss';
 
 function ConnectWallet() {
-  const { account, deactivate, activateBrowserWallet } = useEthers();
+  const { account, activateBrowserWallet, deactivate } = useEthers();
 
   function concise(str) {
     const str1 = str.substring(0, 6);

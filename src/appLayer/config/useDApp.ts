@@ -1,10 +1,9 @@
-import { Config, Sepolia } from '@usedapp/core';
-import { getDefaultProvider } from 'ethers';
+import { Config, Goerli } from '@usedapp/core';
 
 const config: Config = {
-  readOnlyChainId: Sepolia.chainId,
+  readOnlyChainId: Goerli.chainId,
   readOnlyUrls: {
-    [Sepolia.chainId]: getDefaultProvider('sepolia'),
+    [Goerli.chainId]: process.env.NEXT_PUBLIC_GOERLI_RPC,
   },
 };
 
