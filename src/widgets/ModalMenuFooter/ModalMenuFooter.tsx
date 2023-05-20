@@ -4,19 +4,19 @@ import React, { useContext } from 'react';
 import Link from 'next/link';
 
 import ThemeContext from '@/appLayer/context/ThemeContext';
-import { COLOR_WHITE, COLOR_BLACK } from '@/shared/lib/theme/colors';
+import { COLOR_BLACK, COLOR_WHITE } from '@/shared/lib/theme/colors';
 import GithubLink from '@/shared/ui/links/GithubLink/GithubLink';
 import TwitterLink from '@/shared/ui/links/TwitterLink/TwitterLink';
 
-import LayoutFooterStyles from './LayoutFooter.module.scss';
+import ModalMenuFooterStyles from './ModalMenuFooter.module.scss';
 
-function LayoutFooter() {
+function ModalMenuFooter() {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <footer className={LayoutFooterStyles.footer}>
-      <div className={LayoutFooterStyles.container}>
-        <ul className={LayoutFooterStyles.networks}>
+    <div className={ModalMenuFooterStyles.footer}>
+      <div className={ModalMenuFooterStyles.container}>
+        <ul className={ModalMenuFooterStyles.networks}>
           <li>
             <GithubLink
               link="https://github.com/cexles"
@@ -34,18 +34,12 @@ function LayoutFooter() {
             />
           </li>
         </ul>
-        {/*
-          <a className={LayoutFooterStyles.download} href="" download>
-          Our presentation
-          <span className={LayoutFooterStyles.icon} />
-        </a>
-        */}
       </div>
-      <Link className={LayoutFooterStyles.link} href="/">
+      <Link href="/" className={ModalMenuFooterStyles.privacyPolicy}>
         Privacy policy
       </Link>
-    </footer>
+    </div>
   );
 }
 
-export default LayoutFooter;
+export default ModalMenuFooter;

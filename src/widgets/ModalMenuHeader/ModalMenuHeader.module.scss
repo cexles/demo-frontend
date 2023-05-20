@@ -1,0 +1,48 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.header {
+  padding: 13.5px 16px;
+  background: var(--header-background);
+  box-shadow: inset 0px -1px 0px rgba(135, 144, 221, 0.1);
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.menuClose {
+  width: 20px;
+  height: 20px;
+  background-image: var(--close-button-background-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.logo {
+  @include mobile {
+    width: 92px;
+  }
+}
+
+.demo {
+  padding: 4px 12px;
+  color: $neon;
+  border: 1px solid $neon;
+  font-size: 12px;
+  line-height: 15px;
+  transition: 0.4s;
+
+  &:hover {
+    opacity: 0.4;
+  }
+}

@@ -1,0 +1,13 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.navLink {
+  color: var(--text-color);
+  font-size: 18px;
+  line-height: 23px;
+  font-weight: 300;
+}
+
+.navLinkActive {
+  color: var(--nav-link-color);
+}

@@ -35,8 +35,7 @@ html[data-theme='dark'] {
       110% / 55% 55% no-repeat,
     linear-gradient(#0c1033, #0c1033);
 
-  --main-page-background: url(../../public/bg/background.png) center 0 / cover,
-    linear-gradient(#0c1033, #0c1033);
+  --main-page-background: #0D0F23;
 
   --chat-background: url(../../public/bg/chat-background.png),
     linear-gradient(rgba(5, 7, 30, 1), rgba(5, 7, 30, 1));
@@ -44,6 +43,7 @@ html[data-theme='dark'] {
   --header-background: #080A1B;
   --nav-link-color: rgba(255, 255, 255, 0.5);
   --header-select: rgba(13, 15, 35, 0.3);
+  --button-open-menu: url(../../public/icons/button-open-menu.svg);
 
   --message-border: 1px solid rgba(255, 255, 255, 0.1);
   --bot-message-background: transparent;
@@ -90,8 +90,7 @@ html[data-theme='light'] {
       110% / 55% 55% no-repeat,
     linear-gradient(#fbfbfd, #fbfbfd);
 
-  --main-page-background: url(../../public/bg/background-light.png) center 0 / cover,
-    linear-gradient(#fbfbfd, #fbfbfd);
+  --main-page-background: #F4F5FB;
 
   --chat-background: url(../../public/bg/chat-background-light.png),
     linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
@@ -99,6 +98,7 @@ html[data-theme='light'] {
   --header-background: #FFFFFF;
   --nav-link-color: rgba(0, 0, 0, 0.5);
   --header-select: transparent;
+  --button-open-menu: url(../../public/icons/button-open-menu-dark.svg);
 
   --message-border: 1px solid rgba(12, 16, 51, 0.1);
   --bot-message-background: #ffffff;

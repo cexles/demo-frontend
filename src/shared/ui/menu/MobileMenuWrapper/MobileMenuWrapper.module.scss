@@ -1,0 +1,22 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.menu {
+  width: 24px;
+  height: 24px;
+  background-image: var(--button-open-menu);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.buttonClose {
+  width: 20px;
+  height: 20px;
+  background-image: var(--close-button-background-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}

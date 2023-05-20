@@ -1,0 +1,11 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
