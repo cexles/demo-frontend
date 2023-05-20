@@ -3,7 +3,7 @@
 import { useContext } from 'react';
 
 import ModalContext from '@/appLayer/context/ModalContext';
-import MobileMenuModal from '@/features/modal/MobileMenu/ui/MobileMenuModal';
+import ModalMenuMobile from '@/widgets/ModalMenuMobile/ModalMenuMobile';
 
 import MobileMenuWrapperStyles from './MobileMenuWrapper.module.scss';
 import { Props } from './type';
@@ -27,7 +27,7 @@ function MobileMenuWrapper({ width }: Props) {
       type="button"
       aria-label="Open menu"
       className={MobileMenuWrapperStyles.menu}
-      onClick={() => handleModal(<MobileMenuModal />)}
+      onClick={() => handleModal(<ModalMenuMobile />)}
     />
   );
 }

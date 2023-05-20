@@ -7,6 +7,7 @@ import Image from 'next/image';
 
 import ThemeContext from '@/appLayer/context/ThemeContext';
 import ModalContext from '@/appLayer/context/ModalContext';
+import ConnectWallet from '@/features/web3/ConnectWallet/ui/ConnectWallet';
 import ChangeTheme from '@/features/theme/ChangeTheme/ui/ChangeTheme';
 import Menu from '@/features/navigation/Menu/ui/Menu';
 import useScreenWidth from '@/shared/lib/theme/useScreenWidth';
@@ -49,7 +50,10 @@ function LayoutHeader() {
           </Link>
         </div>
         <Menu />
-        <ChangeTheme />
+        <div className={LayoutHeaderStyles.buttons}>
+          {width > 1024 ? <ChangeTheme /> : ''}
+          <ConnectWallet width={width} />
+        </div>
       </div>
     </header>
   );

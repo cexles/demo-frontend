@@ -1,0 +1,81 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.connectButton {
+  display: flex;
+  padding: 5.5px 24px;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  background-color: $purple;
+  box-shadow: var(--connect-button-shadow);
+  border-radius: 4px;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  transition: 0.4s;
+  cursor: pointer;
+
+  @include mobile {
+    padding: 12px;
+
+    p {
+      display: none;
+    }
+  }
+
+  &:hover {
+    background-color: var(--connect-button-active);
+  }
+}
+
+.walletConnected {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 8px;
+  color: var(--text-color);
+  border: 1px solid rgba(135, 144, 221, 0.3);
+  box-shadow: var(--connect-button-shadow);
+  background-color: rgba(135, 144, 221, 0.15);
+  flex-direction: row;
+  font-weight: 265;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.cancel {
+  width: 16px;
+  height: 16px;
+  background-image: var(--close-button-background-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: repeat(2, auto);
+  gap: 0 8px;
+
+  img {
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+
+  p {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 21px;
+  }
+
+  h3 {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 13px;
+  }
+}
