@@ -1,0 +1,61 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.content {
+  background-color: var(--order-page-background);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color);
+  font-size: 18px;
+  line-height: 22px;
+
+  @include tablet {
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  @include mobile {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
+.main {
+  padding-bottom: 60px;
+  margin: 20px auto 0;
+  max-width: 1328px;
+  width: 100%;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 0.6fr 0.4fr;
+  grid-template-rows: auto 1fr;
+  gap: 76px 56px;
+  grid-template-areas:
+    'chat chart'
+    'chat follow-us';
+  transition: 0.4s;
+
+  max-height: calc(100vh - 110px);
+  overflow-y: scroll;
+
+  @media (max-width: 1400px) {
+    min-height: auto;
+    gap: 20px;
+  }
+
+  @media (max-width: 1348px) {
+    padding: 0 30px;
+  }
+
+  @include tablet {
+    margin-top: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-height: none;
+  }
+}

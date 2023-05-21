@@ -35,7 +35,7 @@ html[data-theme='dark'] {
       110% / 55% 55% no-repeat,
     linear-gradient(#0c1033, #0c1033);
 
-  --main-page-background: #0D0F23;
+  --order-page-background: #0D0F23;
 
   --chat-background: url(../../public/bg/chat-background.png),
     linear-gradient(rgba(5, 7, 30, 1), rgba(5, 7, 30, 1));
@@ -93,7 +93,7 @@ html[data-theme='light'] {
       110% / 55% 55% no-repeat,
     linear-gradient(#fbfbfd, #fbfbfd);
 
-  --main-page-background: #F4F5FB;
+  --order-page-background: #F4F5FB;
 
   --chat-background: url(../../public/bg/chat-background-light.png),
     linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));

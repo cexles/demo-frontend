@@ -6,7 +6,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import ThemeContext from '@/appLayer/context/ThemeContext';
-import ModalContext from '@/appLayer/context/ModalContext';
 import ConnectWallet from '@/features/web3/ConnectWallet/ui/ConnectWallet';
 import ChangeTheme from '@/features/theme/ChangeTheme/ui/ChangeTheme';
 import Menu from '@/features/navigation/Menu/ui/Menu';
@@ -18,23 +17,12 @@ import LayoutHeaderStyles from './LayoutHeader.module.scss';
 
 function LayoutHeader() {
   const { theme } = useContext(ThemeContext);
-  const { openModal } = useContext(ModalContext);
   const pathname = usePathname();
   const width = useScreenWidth();
 
   return (
     <header
-      className={
-        // eslint-disable-next-line no-nested-ternary
-        pathname !== '/'
-          ? // eslint-disable-next-line no-nested-ternary
-            width < 1024
-            ? openModal
-              ? LayoutHeaderStyles.headerOrder
-              : LayoutHeaderStyles.headerMain
-            : LayoutHeaderStyles.headerMain
-          : LayoutHeaderStyles.headerMain
-      }
+      className={pathname !== '/' ? LayoutHeaderStyles.headerOrder : LayoutHeaderStyles.headerMain}
     >
       <div className={LayoutHeaderStyles.headerWrapper}>
         <div className={LayoutHeaderStyles.logoWrapper}>

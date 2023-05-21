@@ -34,12 +34,6 @@ function LayoutFooter() {
             />
           </li>
         </ul>
-        {/*
-          <a className={LayoutFooterStyles.download} href="" download>
-          Our presentation
-          <span className={LayoutFooterStyles.icon} />
-        </a>
-        */}
       </div>
       <Link className={LayoutFooterStyles.link} href="/">
         Privacy policy
