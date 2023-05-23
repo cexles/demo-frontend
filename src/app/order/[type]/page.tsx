@@ -6,19 +6,19 @@ import LayoutOrder from '@/widgets/LayoutOrder/LayoutOrder';
 
 import OrderPageStyles from './OrderPage.module.scss';
 
-function Order({ params }: { params: { slug: string } }) {
-  const [orderType, setOrderType] = useState<string>(params.slug);
+function Order({ params }: { params: { type: string } }) {
+  const [orderType, setOrderType] = useState<string>(params.type);
 
   useEffect(() => {
-    if (orderType !== params.slug) {
-      setOrderType(params.slug);
+    if (orderType !== params.type) {
+      setOrderType(params.type);
     }
   }, [orderType, params]);
 
   return (
     <div className={OrderPageStyles.content}>
       <main className={OrderPageStyles.main}>
-        <LayoutOrder />
+        <LayoutOrder type={orderType} />
       </main>
     </div>
   );

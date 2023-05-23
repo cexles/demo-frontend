@@ -48,17 +48,22 @@ html[data-theme='dark'] {
   --connect-button-shadow: 0px 15px 40px rgba(0, 0, 0, 0.25);
   --connect-button-active: rgba(79, 92, 210, 0.4);
 
+  --chat-border: 1px solid rgba(255, 255, 255, 0.1);
   --message-border: 1px solid rgba(255, 255, 255, 0.1);
   --bot-message-background: transparent;
   --user-message-background: rgba(255, 255, 255, 0.05);
   --input-border: rgba(255, 255, 255, 0.4);
   --input-focus-border: rgba(255, 255, 255);
   --input-hover-border: rgba(255, 255, 255, 0.2);
+  --select-chat-type-background: #0d0f23;
   --select-menu-color: #0c1033;
   --select-option-focused: rgba(255, 255, 255, 0.1);
+  --select-indicator: rgba(255, 255, 255, 0.1);
   --avatar-background: rgba(255, 255, 255, 0.1);
   --time-color: rgba(255, 255, 255, 0.5);
   --loader-color: rgba(255, 255, 255, 0.5);
+  --button-swap-image: url(../../public/icons/ArrowsLeftRight.svg);
+  --question-image: url(../../public/icons/Question.svg);
 
   --follow-us-background: rgba(255, 255, 255, 0.05);
   --follow-us-color: rgba(255, 255, 255, 0.7);
@@ -107,12 +112,24 @@ html[data-theme='light'] {
   --connect-button-active: #4f5cd2;
   --connect-button-shadow: 0px 15px 40px rgba(0, 0, 0, 0.1);
 
+  --chat-border: 1px solid rgba(0, 0, 0, 0.1);
   --message-border: 1px solid rgba(12, 16, 51, 0.1);
   --bot-message-background: #ffffff;
   --user-message-background: #efeff1;
   --input-border: rgba(12, 16, 51, 0.4);
   --input-focus-border: rgba(135, 144, 221, 0.8);
   --input-hover-border: rgba(12, 16, 51, 0.2);
+  --select-chat-type-background: #f4f5fb;
+  --select-indicator: rgba(0, 0, 0, 0.1);
+  --button-swap-image: url(../../public/icons/ArrowsLeftRight-dark.svg);
+  --question-image: url(../../public/icons/Question-dark.svg);
+
+  --toggle-border: 1px solid #6470db;
+  --input-unit-color: rgba(0, 0, 0, 0.3);
+
+  --radio-background: rgba(0, 0, 0, 0.15);
+  --radio-border: rgba(0, 0, 0, 0.2);
+
   --select-menu-color: #ffffff;
   --select-option-focused: rgba(12, 16, 51, 0.05);
   --avatar-background: rgba(12, 16, 51, 0.05);
@@ -133,6 +150,8 @@ html[data-theme='light'] {
 
   --close-button-background-image: url(../../public/icons/close-button-dark.svg);
   --modal-window-background: #efeff1;
+
+  --orders-border: rgba(0, 0, 0, 0.05);
 
   --tooltip-background-color: #ffffff;
   --tooltip-filter: drop-shadow(0px 0px 1px rgba(26, 32, 36, 0.32))

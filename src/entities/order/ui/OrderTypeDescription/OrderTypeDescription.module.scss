@@ -1,0 +1,11 @@
+@import '../../../../appLayer/styles/colors';
+@import '../../../../appLayer/styles/breakpoints';
+
+.description {
+  p {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 15px;
+    color: var(--text-color);
+  }
+}
