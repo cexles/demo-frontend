@@ -6,7 +6,8 @@ import themeReducer from '@/entities/theme/model/slice';
 
 const preloadedState = {
   theme: {
-    orderFormat: localStorage?.getItem('app-order-format') || 'chat',
+    orderFormat:
+      typeof window !== 'undefined' ? localStorage.getItem('app-order-format') || 'chat' : 'chat',
   },
 };
 
