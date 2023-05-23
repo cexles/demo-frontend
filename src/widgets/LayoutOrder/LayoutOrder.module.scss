@@ -1,0 +1,74 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.order {
+  grid-area: chat;
+  background: var(--body-background);
+  background-size: contain;
+  border: var(--chat-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow: -moz-scrollbars-vertical;
+  scrollbar-color: #2f2f37 #8585ad;
+  scrollbar-width: thin;
+
+  @include tablet {
+    margin-top: 0;
+    flex: 1;
+    border: none;
+  }
+  .custom-select__control {
+    border: none !important;
+  }
+}
+
+.orderSwitcher {
+  padding: 16px 32px;
+  border-bottom: var(--chat-border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  @include mobile {
+    padding: 16px;
+  }
+
+  p {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 15px;
+    color: var(--text-color);
+  }
+}
+
+.wrapper {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+
+  @include mobile {
+    padding: 0;
+    flex-direction: column;
+  }
+
+  label {
+    min-width: 92px;
+
+    @include mobile {
+      min-width: auto;
+    }
+  }
+}
+
+.chat::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 3px;
+}
+
+.chat::-webkit-scrollbar-thumb {
+  background-color: rgba(135, 144, 221, 0.5);
+}

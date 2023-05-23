@@ -1,6 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+
+import LayoutOrder from '@/widgets/LayoutOrder/LayoutOrder';
+
 import OrderPageStyles from './OrderPage.module.scss';
 
 function Order({ params }: { params: { slug: string } }) {
@@ -14,7 +17,9 @@ function Order({ params }: { params: { slug: string } }) {
 
   return (
     <div className={OrderPageStyles.content}>
-      <main className={OrderPageStyles.main} />
+      <main className={OrderPageStyles.main}>
+        <LayoutOrder />
+      </main>
     </div>
   );
 }
