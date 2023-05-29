@@ -12,20 +12,26 @@ function Index() {
         <p className={styles.subtitle}>😉 Try one of our prompts!</p>
         <ul className={styles.links}>
           <li>
+            <Link className={styles.link} href="order/take-profit">
+              Take profits at high prices
+              <span className={styles.arrow} />
+            </Link>
+          </li>
+          <li>
+            <Link className={styles.link} href="order/stop-loss">
+              Secure assets from market drops
+              <span className={styles.arrow} />
+            </Link>
+          </li>
+          <li>
+            <Link className={styles.link} href="order/trailing">
+              Realize profits flexible with market moves
+              <span className={styles.arrow} />
+            </Link>
+          </li>
+          <li>
             <Link className={styles.link} href="order/dca">
-              Buy some asset in recurring way
-              <span className={styles.arrow} />
-            </Link>
-          </li>
-          <li>
-            <Link className={styles.link} href="/">
-              Sell if my asset going to the moon
-              <span className={styles.arrow} />
-            </Link>
-          </li>
-          <li>
-            <Link className={styles.link} href="/">
-              Safe my funds if asset going low
+              Automate regular asset buys
               <span className={styles.arrow} />
             </Link>
           </li>

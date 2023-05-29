@@ -65,6 +65,9 @@ html[data-theme='dark'] {
   --button-swap-image: url(../../public/icons/ArrowsLeftRight.svg);
   --question-image: url(../../public/icons/Question.svg);
 
+  --toggle-border: none;
+  --input-unit-color: rgba(255, 255, 255, 0.3);
+
   --follow-us-background: rgba(255, 255, 255, 0.05);
   --follow-us-color: rgba(255, 255, 255, 0.7);
 
@@ -79,6 +82,8 @@ html[data-theme='dark'] {
 
   --close-button-background-image: url(../../public/icons/close-button.svg);
   --modal-window-background: #070a29;
+
+  --orders-border: rgba(255, 255, 255, 0.05);
 
   --tooltip-background-color: #010417;
   --tooltip-filter: drop-shadow(0px 0px 1px rgba(26, 32, 36, 0.32))

@@ -35,7 +35,7 @@ function LayoutHeader() {
             alt="Logo"
           />
           <Link className={LayoutHeaderStyles.link} href="/">
-            demo simulation
+            Alpha version
           </Link>
         </div>
         <Menu />

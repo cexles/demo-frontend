@@ -1,0 +1,147 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.item {
+  border: var(--chat-border);
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--input-hover-border);
+  }
+}
+
+.itemOpen {
+  background: var(--orders-border);
+  border: 1px solid;
+  border-color: var(--input-hover-border);
+}
+
+.order {
+  padding: 8px;
+  display: grid;
+  gap: 0 8px;
+  justify-items: start;
+  grid-template-columns: 1fr 3fr 3fr 2fr auto;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+
+  @include mobile {
+    grid-template-columns: 1fr auto auto;
+    grid-template-areas:
+    "time status link"
+    "type type type";
+  }
+}
+
+.time {
+  font-size: 10px;
+  line-height: 13px;
+  color: var(--nav-link-color);
+
+  @include mobile {
+    grid-area: time;
+  }
+}
+
+.type {
+  display: flex;
+  gap: 8px;
+
+  p {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  span {
+    width: 12px;
+    height: 12px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  @include mobile {
+    grid-area: type;
+  }
+}
+
+.tokens {
+  display: flex;
+
+  li:last-of-type {
+    margin-left: -6px;
+  }
+}
+
+.status {
+  font-size: 12px;
+  line-height: 15px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+
+  @include mobile {
+    grid-area: status
+  }
+}
+
+.statusActive {
+  color: #35E151;
+  background: rgba(53, 225, 81, 0.1)
+}
+
+.statusDone {
+  color: $purple;
+  background: rgba(135, 144, 221, 0.1);
+}
+
+.statusCanceled {
+  color: #8B8B8B;
+  background: rgba(139, 139, 139, 0.1);
+}
+
+.link {
+  width: 5px;
+  height: 10px;
+  background-image: url(../../../../../public/icons/arrow-purple.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: .2s;
+  align-self: center;
+
+  @include mobile {
+    grid-area: link;
+  }
+}
+
+.linkOpen {
+  transform: rotate(90deg);
+}
+
+.description {
+  padding: 8px 0 !important;
+  margin: 0 8px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  li {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 15px;
+
+    h4 {
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 13px;
+      color: var(--nav-link-color);
+    }
+  }
+}
