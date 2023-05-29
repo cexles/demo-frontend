@@ -37,8 +37,9 @@ function OrderHistoryView({ orderData }: Props) {
     if (orderData.status) {
       if (orderData.order.expiration * 1000 < DateTime.now().toUTC()) {
         setOrderStatus('Expired');
+      } else {
+        setOrderStatus('Active');
       }
-      setOrderStatus('Active');
     } else {
       setOrderStatus('Closed');
     }
@@ -55,7 +56,11 @@ function OrderHistoryView({ orderData }: Props) {
 
           <li>
             <h4>Bound order</h4>
-            <p>{orderData.order.boundOrders.length !== 0 ? orderData.order.boundOrders : '-'}</p>
+            <p>
+              {orderData.order.boundOrder.toString() !== '0'
+                ? orderData.order.boundOrder.toString()
+                : '-'}
+            </p>
           </li>
           <li>
             <h4>Expiration</h4>
@@ -97,7 +102,7 @@ function OrderHistoryView({ orderData }: Props) {
           <li>
             <h4>Period</h4>
             <p>
-              {duration.as('days') < 7
+              {duration.as('days') < 31
                 ? `${duration.toFormat('d')} day`
                 : `${duration.toFormat('M')} month`}
             </p>
@@ -112,7 +117,7 @@ function OrderHistoryView({ orderData }: Props) {
           </li>
           <li>
             <h4>Target token balance</h4>
-            <p>?</p>
+            <p>{(formatEther(orderData.resultTokenOut) / 1).toFixed(2)}</p>
           </li>
           <li>
             <h4>Buy amount</h4>
@@ -143,7 +148,7 @@ function OrderHistoryView({ orderData }: Props) {
           </li>
           <li>
             <h4>Target token balance</h4>
-            <p>?</p>
+            <p>{(formatEther(orderData.resultTokenOut) / 1).toFixed(2)}</p>
           </li>
           <li>
             <h4>Last sell rate</h4>

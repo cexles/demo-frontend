@@ -34,7 +34,7 @@ export declare namespace TradingPlatform {
     aimTargetTokenAmount: PromiseOrValue<BigNumberish>;
     minTargetTokenAmount: PromiseOrValue<BigNumberish>;
     expiration: PromiseOrValue<BigNumberish>;
-    boundOrders: PromiseOrValue<BigNumberish>[];
+    boundOrder: PromiseOrValue<BigNumberish>;
     action: PromiseOrValue<BigNumberish>;
     data: PromiseOrValue<BytesLike>;
   };
@@ -49,7 +49,7 @@ export declare namespace TradingPlatform {
     BigNumber,
     BigNumber,
     BigNumber,
-    BigNumber[],
+    BigNumber,
     number,
     string,
   ] & {
@@ -62,7 +62,7 @@ export declare namespace TradingPlatform {
     aimTargetTokenAmount: BigNumber;
     minTargetTokenAmount: BigNumber;
     expiration: BigNumber;
-    boundOrders: BigNumber[];
+    boundOrder: BigNumber;
     action: number;
     data: string;
   };
@@ -71,12 +71,22 @@ export declare namespace TradingPlatform {
     id: PromiseOrValue<BigNumberish>;
     order: TradingPlatform.OrderStruct;
     additionalInformation: PromiseOrValue<BigNumberish>;
+    resultTokenOut: PromiseOrValue<BigNumberish>;
+    status: PromiseOrValue<boolean>;
   };
 
-  export type OrderInfoStructOutput = [BigNumber, TradingPlatform.OrderStructOutput, BigNumber] & {
+  export type OrderInfoStructOutput = [
+    BigNumber,
+    TradingPlatform.OrderStructOutput,
+    BigNumber,
+    BigNumber,
+    boolean,
+  ] & {
     id: BigNumber;
     order: TradingPlatform.OrderStructOutput;
     additionalInformation: BigNumber;
+    resultTokenOut: BigNumber;
+    status: boolean;
   };
 }
 
@@ -90,18 +100,19 @@ export interface TradingPlatformInterface extends utils.Interface {
     'activeOrdersIds(uint256,uint256)': FunctionFragment;
     'activeOrdersLength()': FunctionFragment;
     'addTokensToWhitelist(address[])': FunctionFragment;
-    'boundOrders(uint256[],uint256[])': FunctionFragment;
+    'boundOrders(uint256,uint256)': FunctionFragment;
     'calculateFee(uint256)': FunctionFragment;
     'cancelOrders(uint256[])': FunctionFragment;
     'checkOrder(uint256)': FunctionFragment;
     'checkUpkeep(bytes)': FunctionFragment;
-    'createOrder((address,address,address,uint24,uint24,uint128,uint128,uint128,uint256,uint256[],uint8,bytes))': FunctionFragment;
+    'createOrder((address,address,address,uint24,uint24,uint128,uint128,uint128,uint256,uint256,uint8,bytes))': FunctionFragment;
     'deposit(address,uint256)': FunctionFragment;
     'executeOrders(uint256[])': FunctionFragment;
     'getFeeRecipient()': FunctionFragment;
     'getOrderCounter()': FunctionFragment;
     'getOrdersInfo(uint256[])': FunctionFragment;
     'getProtocolFee()': FunctionFragment;
+    'getResultTokenOut(uint256)': FunctionFragment;
     'getRoleAdmin(bytes32)': FunctionFragment;
     'getRoleMember(bytes32,uint256)': FunctionFragment;
     'getRoleMemberCount(bytes32)': FunctionFragment;
@@ -145,6 +156,7 @@ export interface TradingPlatformInterface extends utils.Interface {
       | 'getOrderCounter'
       | 'getOrdersInfo'
       | 'getProtocolFee'
+      | 'getResultTokenOut'
       | 'getRoleAdmin'
       | 'getRoleMember'
       | 'getRoleMemberCount'
@@ -185,7 +197,7 @@ export interface TradingPlatformInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: 'boundOrders',
-    values: [PromiseOrValue<BigNumberish>[], PromiseOrValue<BigNumberish>[]],
+    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>],
   ): string;
   encodeFunctionData(
     functionFragment: 'calculateFee',
@@ -219,6 +231,10 @@ export interface TradingPlatformInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>[]],
   ): string;
   encodeFunctionData(functionFragment: 'getProtocolFee', values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: 'getResultTokenOut',
+    values: [PromiseOrValue<BigNumberish>],
+  ): string;
   encodeFunctionData(functionFragment: 'getRoleAdmin', values: [PromiseOrValue<BytesLike>]): string;
   encodeFunctionData(
     functionFragment: 'getRoleMember',
@@ -304,6 +320,7 @@ export interface TradingPlatformInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: 'getOrderCounter', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'getOrdersInfo', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'getProtocolFee', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'getResultTokenOut', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'getRoleAdmin', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'getRoleMember', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'getRoleMemberCount', data: BytesLike): Result;
@@ -326,9 +343,10 @@ export interface TradingPlatformInterface extends utils.Interface {
 
   events: {
     'Deposited(address,address,uint256)': EventFragment;
+    'OrderCanceled(uint256)': EventFragment;
     'OrderCreated(uint256,address)': EventFragment;
     'OrderExecuted(uint256,address)': EventFragment;
-    'OrdersBounded(uint256[],uint256[])': EventFragment;
+    'OrdersBounded(uint256,uint256)': EventFragment;
     'RoleAdminChanged(bytes32,bytes32,bytes32)': EventFragment;
     'RoleGranted(bytes32,address,address)': EventFragment;
     'RoleRevoked(bytes32,address,address)': EventFragment;
@@ -338,6 +356,7 @@ export interface TradingPlatformInterface extends utils.Interface {
   };
 
   getEvent(nameOrSignatureOrTopic: 'Deposited'): EventFragment;
+  getEvent(nameOrSignatureOrTopic: 'OrderCanceled'): EventFragment;
   getEvent(nameOrSignatureOrTopic: 'OrderCreated'): EventFragment;
   getEvent(nameOrSignatureOrTopic: 'OrderExecuted'): EventFragment;
   getEvent(nameOrSignatureOrTopic: 'OrdersBounded'): EventFragment;
@@ -358,6 +377,13 @@ export type DepositedEvent = TypedEvent<[string, string, BigNumber], DepositedEv
 
 export type DepositedEventFilter = TypedEventFilter<DepositedEvent>;
 
+export interface OrderCanceledEventObject {
+  orderId: BigNumber;
+}
+export type OrderCanceledEvent = TypedEvent<[BigNumber], OrderCanceledEventObject>;
+
+export type OrderCanceledEventFilter = TypedEventFilter<OrderCanceledEvent>;
+
 export interface OrderCreatedEventObject {
   orderId: BigNumber;
   userAddress: string;
@@ -375,10 +401,10 @@ export type OrderExecutedEvent = TypedEvent<[BigNumber, string], OrderExecutedEv
 export type OrderExecutedEventFilter = TypedEventFilter<OrderExecutedEvent>;
 
 export interface OrdersBoundedEventObject {
-  leftOrders: BigNumber[];
-  rightOrders: BigNumber[];
+  leftOrderId: BigNumber;
+  rightOrderId: BigNumber;
 }
-export type OrdersBoundedEvent = TypedEvent<[BigNumber[], BigNumber[]], OrdersBoundedEventObject>;
+export type OrdersBoundedEvent = TypedEvent<[BigNumber, BigNumber], OrdersBoundedEventObject>;
 
 export type OrdersBoundedEventFilter = TypedEventFilter<OrdersBoundedEvent>;
 
@@ -487,8 +513,8 @@ export interface TradingPlatform extends BaseContract {
     ): Promise<ContractTransaction>;
 
     boundOrders(
-      leftOrders: PromiseOrValue<BigNumberish>[],
-      rightOrders: PromiseOrValue<BigNumberish>[],
+      leftOrderId: PromiseOrValue<BigNumberish>,
+      rightOrderId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<ContractTransaction>;
 
@@ -542,6 +568,11 @@ export interface TradingPlatform extends BaseContract {
     >;
 
     getProtocolFee(overrides?: CallOverrides): Promise<[number]>;
+
+    getResultTokenOut(
+      orderId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides,
+    ): Promise<[BigNumber]>;
 
     getRoleAdmin(role: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<[string]>;
 
@@ -661,8 +692,8 @@ export interface TradingPlatform extends BaseContract {
   ): Promise<ContractTransaction>;
 
   boundOrders(
-    leftOrders: PromiseOrValue<BigNumberish>[],
-    rightOrders: PromiseOrValue<BigNumberish>[],
+    leftOrderId: PromiseOrValue<BigNumberish>,
+    rightOrderId: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> },
   ): Promise<ContractTransaction>;
 
@@ -706,6 +737,11 @@ export interface TradingPlatform extends BaseContract {
   ): Promise<TradingPlatform.OrderInfoStructOutput[]>;
 
   getProtocolFee(overrides?: CallOverrides): Promise<number>;
+
+  getResultTokenOut(
+    orderId: PromiseOrValue<BigNumberish>,
+    overrides?: CallOverrides,
+  ): Promise<BigNumber>;
 
   getRoleAdmin(role: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<string>;
 
@@ -825,8 +861,8 @@ export interface TradingPlatform extends BaseContract {
     ): Promise<void>;
 
     boundOrders(
-      leftOrders: PromiseOrValue<BigNumberish>[],
-      rightOrders: PromiseOrValue<BigNumberish>[],
+      leftOrderId: PromiseOrValue<BigNumberish>,
+      rightOrderId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides,
     ): Promise<void>;
 
@@ -870,6 +906,11 @@ export interface TradingPlatform extends BaseContract {
     ): Promise<TradingPlatform.OrderInfoStructOutput[]>;
 
     getProtocolFee(overrides?: CallOverrides): Promise<number>;
+
+    getResultTokenOut(
+      orderId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides,
+    ): Promise<BigNumber>;
 
     getRoleAdmin(role: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<string>;
 
@@ -967,17 +1008,20 @@ export interface TradingPlatform extends BaseContract {
     ): DepositedEventFilter;
     Deposited(operator?: null, token?: null, amount?: null): DepositedEventFilter;
 
+    'OrderCanceled(uint256)'(orderId?: null): OrderCanceledEventFilter;
+    OrderCanceled(orderId?: null): OrderCanceledEventFilter;
+
     'OrderCreated(uint256,address)'(orderId?: null, userAddress?: null): OrderCreatedEventFilter;
     OrderCreated(orderId?: null, userAddress?: null): OrderCreatedEventFilter;
 
     'OrderExecuted(uint256,address)'(orderId?: null, validator?: null): OrderExecutedEventFilter;
     OrderExecuted(orderId?: null, validator?: null): OrderExecutedEventFilter;
 
-    'OrdersBounded(uint256[],uint256[])'(
-      leftOrders?: null,
-      rightOrders?: null,
+    'OrdersBounded(uint256,uint256)'(
+      leftOrderId?: null,
+      rightOrderId?: null,
     ): OrdersBoundedEventFilter;
-    OrdersBounded(leftOrders?: null, rightOrders?: null): OrdersBoundedEventFilter;
+    OrdersBounded(leftOrderId?: null, rightOrderId?: null): OrdersBoundedEventFilter;
 
     'RoleAdminChanged(bytes32,bytes32,bytes32)'(
       role?: PromiseOrValue<BytesLike> | null,
@@ -1054,8 +1098,8 @@ export interface TradingPlatform extends BaseContract {
     ): Promise<BigNumber>;
 
     boundOrders(
-      leftOrders: PromiseOrValue<BigNumberish>[],
-      rightOrders: PromiseOrValue<BigNumberish>[],
+      leftOrderId: PromiseOrValue<BigNumberish>,
+      rightOrderId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<BigNumber>;
 
@@ -1102,6 +1146,11 @@ export interface TradingPlatform extends BaseContract {
     ): Promise<BigNumber>;
 
     getProtocolFee(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getResultTokenOut(
+      orderId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides,
+    ): Promise<BigNumber>;
 
     getRoleAdmin(role: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -1222,8 +1271,8 @@ export interface TradingPlatform extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     boundOrders(
-      leftOrders: PromiseOrValue<BigNumberish>[],
-      rightOrders: PromiseOrValue<BigNumberish>[],
+      leftOrderId: PromiseOrValue<BigNumberish>,
+      rightOrderId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<PopulatedTransaction>;
 
@@ -1273,6 +1322,11 @@ export interface TradingPlatform extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     getProtocolFee(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    getResultTokenOut(
+      orderId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides,
+    ): Promise<PopulatedTransaction>;
 
     getRoleAdmin(
       role: PromiseOrValue<BytesLike>,
@@ -1371,5 +1425,3 @@ export interface TradingPlatform extends BaseContract {
     ): Promise<PopulatedTransaction>;
   };
 }
-
-export class OrderInfoStructOutput {}
