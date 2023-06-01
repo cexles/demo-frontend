@@ -1,0 +1,46 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.radio {
+  display: flex;
+  gap: 8px;
+
+  h4 {
+    white-space: nowrap;
+  }
+}
+
+.radio input[type='radio'] {
+  display: none;
+}
+
+.item {
+  display: flex;
+  gap: 10px;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--text-color);
+}
+
+.label {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background: var(--radio-background);
+  border: 1px solid;
+  border-color: var(--radio-border);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.input:checked + .label:after {
+  content: '';
+  background: $purple;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+}

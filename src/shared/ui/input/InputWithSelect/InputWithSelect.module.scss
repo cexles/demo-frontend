@@ -1,0 +1,39 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.wrapper {
+  width: 100%;
+  max-width: 360px;
+  padding: 8.5px;
+  border: 1px solid;
+  border-color: var(--input-border);
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: auto minmax(105px, auto);
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+
+  @include tablet {
+    max-width: none;
+  }
+}
+
+.span {
+  position: absolute;
+  bottom: -16px;
+  right: 0;
+  align-self: flex-end;
+  font-weight: 265;
+  font-size: 9px;
+  line-height: 12px;
+  color: var(--nav-link-color);
+}
+
+.input {
+  width: inherit;
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+}

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useRouter } from 'next/navigation';
 
-import orderTypes from '@/shared/config/order.config';
+import { orderTypes } from '@/shared/config/order.config';
 
 import { Props } from './type';
 

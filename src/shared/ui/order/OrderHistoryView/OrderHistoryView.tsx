@@ -35,7 +35,9 @@ function OrderHistoryView({ orderData }: Props) {
 
   useEffect(() => {
     if (orderData.status) {
-      if (orderData.order.expiration * 1000 < DateTime.now().toUTC()) {
+      if (orderData.order.action === 2) {
+        setOrderStatus('Active');
+      } else if (orderData.order.expiration * 1000 < DateTime.now().toUTC()) {
         setOrderStatus('Expired');
       } else {
         setOrderStatus('Active');
@@ -43,6 +45,7 @@ function OrderHistoryView({ orderData }: Props) {
     } else {
       setOrderStatus('Closed');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderData.order.expiration, orderData.status]);
 
   const orderDescription = () => {
@@ -103,7 +106,7 @@ function OrderHistoryView({ orderData }: Props) {
             <h4>Period</h4>
             <p>
               {duration.as('days') < 31
-                ? `${duration.toFormat('d')} day`
+                ? `${duration.toFormat('d')} days`
                 : `${duration.toFormat('M')} month`}
             </p>
           </li>

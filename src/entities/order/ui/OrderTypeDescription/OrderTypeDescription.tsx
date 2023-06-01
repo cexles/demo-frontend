@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import orderTypes from '@/shared/config/order.config';
+import { orderTypes } from '@/shared/config/order.config';
 
 import OrderTypeDescriptionStyles from './OrderTypeDescription.module.scss';
 import { Props } from './type';
