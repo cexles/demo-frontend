@@ -12,7 +12,9 @@ function ModalOrderHistory({ orders }: Props) {
   const { handleModal } = useContext(ModalContext);
 
   return (
-    <div className={ModalOrderHistoryStyles.overlay}>
+    <>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+      <div className={ModalOrderHistoryStyles.overlay} onClick={() => handleModal()} />
       <div className={ModalOrderHistoryStyles.container}>
         <div className={ModalOrderHistoryStyles.orders}>
           <section className={ModalOrderHistoryStyles.section}>
@@ -47,7 +49,7 @@ function ModalOrderHistory({ orders }: Props) {
           </section>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
