@@ -54,9 +54,17 @@ function OrderHistoryView({ orderData }: Props) {
         <>
           <li>
             <h4>Base token amount</h4>
-            <p>{(formatEther(orderData.order.baseAmount) / 1).toFixed(2)}</p>
+            <p>{Number(formatEther(orderData.order.baseAmount)).toFixed(2)}</p>
           </li>
-
+          <li>
+            <h4>Trigger rate</h4>
+            <p>
+              {(
+                formatEther(orderData.order.aimTargetTokenAmount) /
+                formatEther(orderData.order.baseAmount)
+              ).toFixed(4)}
+            </p>
+          </li>
           <li>
             <h4>Bound order</h4>
             <p>
@@ -66,24 +74,23 @@ function OrderHistoryView({ orderData }: Props) {
             </p>
           </li>
           <li>
+            <h4>Target token amount</h4>
+            <p>{Number(formatEther(orderData.order.aimTargetTokenAmount)).toFixed(4)}</p>
+          </li>
+          <li>
+            <h4>Execution amount</h4>
+            <p>
+              {Number(formatEther(orderData.resultTokenOut)).toFixed(2) !== '0.00'
+                ? Number(formatEther(orderData.resultTokenOut)).toFixed(4)
+                : '-'}
+            </p>
+          </li>
+          <li>
             <h4>Expiration</h4>
             <p>
               {DateTime.fromMillis(Number(orderData.order.expiration * 1000))
                 .toUTC()
                 .toFormat('yyyy-MM-dd HH:mm:ss')}
-            </p>
-          </li>
-          <li>
-            <h4>Target token amount</h4>
-            <p>{(formatEther(orderData.order.aimTargetTokenAmount) / 1).toFixed(2)}</p>
-          </li>
-          <li>
-            <h4>Target rate</h4>
-            <p>
-              {(
-                formatEther(orderData.order.aimTargetTokenAmount) /
-                formatEther(orderData.order.baseAmount)
-              ).toFixed(2)}
             </p>
           </li>
         </>
@@ -100,7 +107,7 @@ function OrderHistoryView({ orderData }: Props) {
         <>
           <li>
             <h4>Order balance</h4>
-            <p>{(formatEther(orderData.order.baseAmount) / 1).toFixed(2)}</p>
+            <p>{Number(formatEther(orderData.order.baseAmount)).toFixed(4)}</p>
           </li>
           <li>
             <h4>Period</h4>
@@ -120,11 +127,11 @@ function OrderHistoryView({ orderData }: Props) {
           </li>
           <li>
             <h4>Target token balance</h4>
-            <p>{(formatEther(orderData.resultTokenOut) / 1).toFixed(2)}</p>
+            <p>{Number(formatEther(orderData.resultTokenOut)).toFixed(4)}</p>
           </li>
           <li>
             <h4>Buy amount</h4>
-            <p>{(formatEther(data[1]) / 1).toFixed(2)}</p>
+            <p>{Number(formatEther(data[1])).toFixed(4)}</p>
           </li>
         </>
       );
@@ -139,25 +146,31 @@ function OrderHistoryView({ orderData }: Props) {
         <>
           <li>
             <h4>Order balance</h4>
-            <p>{(formatEther(orderData.order.baseAmount) / 1).toFixed(2)}</p>
+            <p>{Number(formatEther(orderData.order.baseAmount)).toFixed(4)}</p>
           </li>
           <li>
             <h4>Target rate</h4>
-            {(formatEther(orderData.order.aimTargetTokenAmount) / 1).toFixed(2)}
+            {(
+              Number(formatEther(orderData.order.aimTargetTokenAmount)) /
+              Number(formatEther(data[0]))
+            ).toFixed(4)}
           </li>
           <li>
             <h4>Sell at step</h4>
-            {(formatEther(data[1]) / 1).toFixed(2)}
+            {Number(formatEther(data[1])).toFixed(4)}
           </li>
           <li>
             <h4>Target token balance</h4>
-            <p>{(formatEther(orderData.resultTokenOut) / 1).toFixed(2)}</p>
+            <p>{Number(formatEther(orderData.resultTokenOut)).toFixed(4)}</p>
           </li>
           <li>
             <h4>Last sell rate</h4>
             <p>
-              {(formatEther(orderData.additionalInformation) / 1).toFixed(2) !== '0.00'
-                ? (formatEther(orderData.additionalInformation) / 1).toFixed(2)
+              {Number(formatEther(orderData.additionalInformation)).toFixed(2) !== '0.00'
+                ? (
+                    Number(formatEther(orderData.additionalInformation)) /
+                    Number(formatEther(data[0]))
+                  ).toFixed(4)
                 : '-'}
             </p>
           </li>

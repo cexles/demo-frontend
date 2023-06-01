@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { DateTime } from 'luxon';
 import { BigNumber, ethers, utils } from 'ethers';
-import { useEthers } from '@usedapp/core';
+import { formatEther } from '@ethersproject/units';
+import { useEthers, useTokenBalance } from '@usedapp/core';
 
 import useCreateOrder from '@/entities/order/api/createOrder/useCreateOrder';
 import getTokenApprove from '@/entities/order/api/getTokenApprove/getTokenApprove';
@@ -50,6 +51,7 @@ function CreateOrderForm({ type }: Props) {
   const [targetTokenAmount, setTargetTokenAmount] = useState<string>('0');
   const [DCAIntervals, setDCAIntervals] = useState<number>(1);
   const [trailingSwapPercentage, setTrailingSwapPercentage] = useState<number>(25);
+  const tokenBalance = useTokenBalance('0xfDaF650e710cbB5801AA0A152cf4481F70147890', account) ?? 0;
 
   /**
    * useEffect hook for <OrderData> state.
@@ -214,7 +216,7 @@ function CreateOrderForm({ type }: Props) {
    */
   const updateDcaData = (event: React.ChangeEvent<HTMLInputElement>) => {
     const updatedDCAData = { ...DCAData };
-    if (event.target.name === 'order-period') {
+    if (event.target.name === 'period') {
       updatedDCAData[event.target.name] = Number(event.target.value);
     } else if (event.target.name === 'amountPerPeriod') {
       updatedDCAData[event.target.name] = event.target.value;
@@ -251,6 +253,7 @@ function CreateOrderForm({ type }: Props) {
               <InputWithSelect
                 inputName="baseAmount"
                 inputDisabled={false}
+                inputNote={`Balance: ${formatEther(tokenBalance)}`}
                 selectorName="baseToken"
                 selectorDefaultValue="TokenA"
                 onChangeInput={updateOrderData}
@@ -288,6 +291,7 @@ function CreateOrderForm({ type }: Props) {
                   inputName="baseAmount"
                   inputValue={String(DCAData.amountPerPeriod * DCAIntervals)}
                   inputDisabled
+                  inputNote={`Balance: ${formatEther(tokenBalance)}`}
                   selectorDefaultValue="TokenA"
                   onChangeInput={updateDcaData}
                 />
@@ -333,11 +337,7 @@ function CreateOrderForm({ type }: Props) {
                 />
               </h4>
               <div className={CreateOrderFormStyles.inputsWrapper}>
-                <Radio
-                  options={orderPeriodOptions}
-                  name="order-period"
-                  onChangeInput={updateDcaData}
-                />
+                <Radio options={orderPeriodOptions} name="period" onChangeInput={updateDcaData} />
               </div>
             </div>
             <div className={CreateOrderFormStyles.inputs}>

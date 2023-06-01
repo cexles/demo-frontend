@@ -7,6 +7,7 @@ function InputWithSelect({
   inputName,
   inputValue,
   inputDisabled,
+  inputNote,
   selectorDefaultValue,
   onChangeInput,
 }: Props) {
@@ -24,6 +25,7 @@ function InputWithSelect({
         <Image src="/icons/ETH.svg" width={20} height={20} alt={selectorDefaultValue} />
         <p>{selectorDefaultValue}</p>
       </div>
+      {inputNote ? <span className={inputWithSelectStyles.span}>{inputNote}</span> : ''}
     </div>
   );
 }
