@@ -1,7 +1,7 @@
 export type Props = {
   options: RadioOption[];
   name: string;
-  onChangeInput: (event) => void;
+  onChangeInput: (event, value?) => void;
 };
 
 type RadioOption = {

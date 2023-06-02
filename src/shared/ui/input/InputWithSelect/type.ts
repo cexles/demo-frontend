@@ -5,5 +5,5 @@ export type Props = {
   inputNote?: string;
   selectorName?: string;
   selectorDefaultValue: string;
-  onChangeInput: (event) => void;
+  onChangeInput: (event, value?) => void;
 };

@@ -161,10 +161,14 @@ function CreateOrderForm({ type }: Props) {
    * Updates the target token amount in the state by multiplying the base amount in Ether
    * with the input value from the event, formatted to 2 decimal places.
    * @param event The change event from the input field.
+   * @param validatedValue
    */
-  const calculateTargetToken = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const calculateTargetToken = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    validatedValue: string,
+  ) => {
     setTargetTokenAmount(
-      (ethers.utils.formatEther(orderData.baseAmount) * Number(event.target.value))
+      (ethers.utils.formatEther(orderData.baseAmount) * Number(validatedValue))
         .toFixed(2)
         .toString(),
     );
@@ -175,12 +179,16 @@ function CreateOrderForm({ type }: Props) {
    * Updates the order data by calculating the minimum target token amount,
    * considering the specified slippage percentage.
    * @param event The change event from the input field.
+   * @param validatedValue
    */
-  const calculateRateSlippage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const calculateRateSlippage = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    validatedValue: string,
+  ) => {
     const updatedOrderData = { ...orderData };
     updatedOrderData.minTargetTokenAmount = utils.parseEther(
       String(
-        utils.formatEther(orderData.aimTargetTokenAmount) * (1 - Number(event.target.value) / 100),
+        utils.formatEther(orderData.aimTargetTokenAmount) * (1 - Number(validatedValue) / 100),
       ),
     );
     setOrderData(updatedOrderData);
@@ -193,15 +201,18 @@ function CreateOrderForm({ type }: Props) {
    * If the target name is 'boundOrder', the value is converted to a BigNumber and assigned to the field.
    * Otherwise, the value is directly assigned to the field.
    * @param event The change event from the input field.
+   * @param validatedValue
    */
-  const updateOrderData = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const updateOrderData = (event: React.ChangeEvent<HTMLInputElement>, validatedValue: string) => {
     const updatedOrderData = { ...orderData };
     if (event.target.name === 'baseAmount') {
-      updatedOrderData[event.target.name] = utils.parseEther(event.target.value);
+      updatedOrderData[event.target.name] = utils.parseEther(validatedValue);
     } else if (event.target.name === 'boundOrder') {
-      updatedOrderData[event.target.name] = BigNumber.from(event.target.value);
+      updatedOrderData[event.target.name] = BigNumber.from(validatedValue);
+    } else if (event.target.name === 'expiration') {
+      updatedOrderData[event.target.name] = Number(event.target.value);
     } else {
-      updatedOrderData[event.target.name] = event.target.value;
+      updatedOrderData[event.target.name] = validatedValue;
     }
     setOrderData(updatedOrderData);
   };
@@ -213,15 +224,16 @@ function CreateOrderForm({ type }: Props) {
    * If the target name is 'amountPerPeriod', the value is directly assigned to the field.
    * If the target name is 'periodNumber', the DCA intervals are updated and the value is converted to a number.
    * @param event The change event from the input field.
+   * @param validatedValue
    */
-  const updateDcaData = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const updateDcaData = (event: React.ChangeEvent<HTMLInputElement>, validatedValue: string) => {
     const updatedDCAData = { ...DCAData };
     if (event.target.name === 'period') {
       updatedDCAData[event.target.name] = Number(event.target.value);
     } else if (event.target.name === 'amountPerPeriod') {
-      updatedDCAData[event.target.name] = event.target.value;
+      updatedDCAData[event.target.name] = validatedValue;
     } else if (event.target.name === 'periodNumber') {
-      setDCAIntervals(Number(event.target.value));
+      setDCAIntervals(Number(validatedValue));
     }
     setDCAData(updatedDCAData);
   };
@@ -232,14 +244,18 @@ function CreateOrderForm({ type }: Props) {
    * If the target name is 'trailing-step', the value is multiplied by 10,000 and assigned to the 'step' field.
    * If the target name is 'percentage-amount', the value is converted to a number and assigned to the trailing swap percentage.
    @param event The change event from the input field.
+   * @param validatedValue
    */
-  const updateTrailingData = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const updateTrailingData = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    validatedValue: string,
+  ) => {
     const updatedTrailingData = { ...trailingData };
     if (event.target.name === 'trailing-step') {
-      updatedTrailingData.step = Number(event.target.value) * 10000;
+      updatedTrailingData.step = Number(validatedValue) * 10000;
     }
     if (event.target.name === 'percentage-amount') {
-      setTrailingSwapPercentage(Number(event.target.value));
+      setTrailingSwapPercentage(Number(validatedValue));
     }
     setTrailingData(updatedTrailingData);
   };
