@@ -6,24 +6,25 @@ export const orderTypes = {
   'stop-loss': {
     name: 'Stop-Loss',
     description:
-      'A market order that waits for prices to dip below a stop price trigger, designed to swap out of the input asset to prevent losses.',
+      'Order that waits for prices to dip below a stop price trigger, designed to swap out of the input asset to prevent losses.',
     action: 0,
   },
   'take-profit': {
     name: 'Take-Profit',
     description:
-      'Take Profits trigger when they surpass a price threshold, initiating a limit order, behaving like a reversed stop loss, designed to swap out of an asset to secure profits.',
+      'Order that is triggered when an asset exceeds a price threshold, initiates profit taking, designed to replace an asset for profit.',
     action: 1,
   },
   dca: {
     name: 'DCA',
-    description: 'Regularly investing fixed amounts to reduce market timing risk.',
+    description:
+      'Order that helps to buy an asset on a regular basis (e.g. every week for one month) and allows you to average the purchase price. Perfect for beginners.',
     action: 2,
   },
   trailing: {
     name: 'Trailing profit',
     description:
-      'A Trailing Stop order is a stop order that can be set at a defined percentage or amount away from the current market price of a specific asset.',
+      'Order in which the selling price of an asset is automatically adjusted upward as the market price rises, allowing investors to make a profit while allowing for potential further profits.',
     action: 3,
   },
 };
