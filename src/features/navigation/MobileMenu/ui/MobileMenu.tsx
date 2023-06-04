@@ -12,7 +12,7 @@ function MobileMenu() {
       <MobileNavLink href="/" exact>
         Main
       </MobileNavLink>
-      <MobileNavLink href="/documentation" exact>
+      <MobileNavLink href="https://docs.cexles.finance/" target="_blank" exact>
         Documentation
       </MobileNavLink>
     </nav>

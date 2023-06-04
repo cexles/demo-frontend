@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import NavLinkStyles from './NavLink.module.scss';
 import { Props } from './type';
 
-function NavLink({ href, exact = false, children }: Props) {
+function NavLink({ href, exact = false, target, children }: Props) {
   const [isActive, setIsActive] = useState<boolean>(false);
   const pathname = usePathname();
 
@@ -20,7 +20,11 @@ function NavLink({ href, exact = false, children }: Props) {
   }, [exact, href, pathname]);
 
   return (
-    <Link className={isActive ? NavLinkStyles.navLink : NavLinkStyles.navLinkActive} href={href}>
+    <Link
+      className={isActive ? NavLinkStyles.navLink : NavLinkStyles.navLinkActive}
+      href={href}
+      target={target}
+    >
       {children}
     </Link>
   );

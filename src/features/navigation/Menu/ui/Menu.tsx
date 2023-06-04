@@ -12,7 +12,7 @@ function Menu() {
       <NavLink href="/" exact>
         Main
       </NavLink>
-      <NavLink href="/documentation" exact>
+      <NavLink href="https://docs.cexles.finance/" target="_blank" exact>
         Documentation
       </NavLink>
     </nav>

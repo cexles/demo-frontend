@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import MobileNavLinkStyles from './MobileNavLink.module.scss';
 import { Props } from './type';
 
-function MobileNavLink({ href, exact = false, children }: Props) {
+function MobileNavLink({ href, exact = false, target, children }: Props) {
   const [isActive, setIsActive] = useState<boolean>(false);
   const pathname = usePathname();
 
@@ -23,6 +23,7 @@ function MobileNavLink({ href, exact = false, children }: Props) {
     <Link
       className={isActive ? MobileNavLinkStyles.navLink : MobileNavLinkStyles.navLinkActive}
       href={href}
+      target={target}
     >
       {children}
     </Link>
