@@ -265,6 +265,16 @@ function CreateOrderForm({ type }: Props) {
       <div className={CreateOrderFormStyles.container}>
         {type !== 'dca' ? (
           <div className={CreateOrderFormStyles.inputs}>
+            <h4 className={CreateOrderFormStyles.titleWithQuestion}>
+              Total amount
+              <span id="total-amount" />
+              <TooltipDefault
+                content="The total amount of tokens that you want to use in this order"
+                place="right"
+                anchorSelect="total-amount"
+                className="total-amount"
+              />
+            </h4>
             <div className={CreateOrderFormStyles.inputsWrapper}>
               <InputWithSelect
                 inputName="baseAmount"
@@ -296,7 +306,7 @@ function CreateOrderForm({ type }: Props) {
                 Total amount
                 <span id="total-amount" />
                 <TooltipDefault
-                  content="The amount of costs to fulfill the order and the expected amount of new token"
+                  content="The total amount of tokens that you want to use in this order"
                   place="right"
                   anchorSelect="total-amount"
                   className="total-amount"
@@ -327,7 +337,7 @@ function CreateOrderForm({ type }: Props) {
                 Swap per interval
                 <span id="amount-per-period" />
                 <TooltipDefault
-                  content="How much to swap at intervals"
+                  content="The amount of tokens that you want to swap per interval"
                   place="right"
                   anchorSelect="amount-per-period"
                   className="amount-per-period"
@@ -346,7 +356,7 @@ function CreateOrderForm({ type }: Props) {
                 Frequency of execution
                 <span id="order-period" />
                 <TooltipDefault
-                  content="Specify the frequency of order execution"
+                  content="How often the order will be executed"
                   place="right"
                   anchorSelect="order-period"
                   className="order-period"
@@ -357,7 +367,16 @@ function CreateOrderForm({ type }: Props) {
               </div>
             </div>
             <div className={CreateOrderFormStyles.inputs}>
-              <h4># of intervals</h4>
+              <h4 className={CreateOrderFormStyles.titleWithQuestion}>
+                Quantity of intervals
+                <span id="quantity-interval" />
+                <TooltipDefault
+                  content="Number of order executions"
+                  place="right"
+                  anchorSelect="quantity-interval"
+                  className="quantity-interval"
+                />
+              </h4>
               <InputWithNote
                 inputName="periodNumber"
                 placeholder="1"
@@ -397,7 +416,7 @@ function CreateOrderForm({ type }: Props) {
               Percentage of swaps
               <span id="percentage-amount" />
               <TooltipDefault
-                content="How much you want to swap as a percentage when you reach the price steps"
+                content="The percentage of the total amount of tokens to swap on each price step"
                 place="right"
                 anchorSelect="percentage-amount"
                 className="percentage-amount"
@@ -423,7 +442,7 @@ function CreateOrderForm({ type }: Props) {
                 Rate slippage
                 <span id="slippage-rate" />
                 <TooltipDefault
-                  content="The percentage below trigger price at which order can trigger"
+                  content="The percentage below trigger price at which order can be executed"
                   place="right"
                   anchorSelect="slippage-rate"
                   className="slippage-rate"
@@ -467,7 +486,7 @@ function CreateOrderForm({ type }: Props) {
                 Price steps
                 <span id="trailing-step" />
                 <TooltipDefault
-                  content="Percentage of price change when the trigger is reached"
+                  content="The percentage of increasing the trigger price on each step"
                   place="right"
                   anchorSelect="trailing-step"
                   className="trailing-step"
@@ -489,7 +508,7 @@ function CreateOrderForm({ type }: Props) {
                 Order expiration
                 <span id="order-expiration" />
                 <TooltipDefault
-                  content="When an order should expire and be automatic cancelled"
+                  content="The lifetime of the order. After expiration it will have the expired status"
                   place="right"
                   anchorSelect="order-expiration"
                   className="order-expiration"

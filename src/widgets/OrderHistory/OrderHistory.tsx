@@ -31,7 +31,7 @@ function OrderHistory() {
           {orderHistory !== null && orderHistory !== undefined
             ? Object.keys(orderHistory)
                 .reverse()
-                .slice(0, 3)
+                .slice(0, 5)
                 .map((key) => <OrderHistoryView key={key} orderData={orderHistory[key]} />)
             : ''}
         </ul>
