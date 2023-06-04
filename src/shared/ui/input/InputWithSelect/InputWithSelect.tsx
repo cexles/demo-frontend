@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from 'react';
-import Image from 'next/image';
+
+import TokenSelect from '@/shared/ui/select/TokenSelect/TokenSelect';
 
 import inputWithSelectStyles from './InputWithSelect.module.scss';
 import { Props } from './type';
@@ -9,7 +10,9 @@ function InputWithSelect({
   inputValue,
   inputDisabled,
   inputNote,
+  selectorName,
   selectorDefaultValue,
+  onChangeSelect,
   onChangeInput,
 }: Props) {
   const [inputComponentValue, setInputComponentValue] = useState('');
@@ -40,10 +43,11 @@ function InputWithSelect({
           onChange={onChangeInput}
           placeholder="0"
         />
-        <div className="select__label">
-          <Image src="/icons/ETH.svg" width={20} height={20} alt={selectorDefaultValue} />
-          <p>{selectorDefaultValue}</p>
-        </div>
+        <TokenSelect
+          selectName={selectorName}
+          defaultValue={selectorDefaultValue}
+          onChangeSelect={onChangeSelect}
+        />
         {inputNote ? <span className={inputWithSelectStyles.span}>{inputNote}</span> : ''}
       </div>
     );
@@ -59,10 +63,11 @@ function InputWithSelect({
         onChange={validateInputChange}
         placeholder="0"
       />
-      <div className="select__label">
-        <Image src="/icons/ETH.svg" width={20} height={20} alt={selectorDefaultValue} />
-        <p>{selectorDefaultValue}</p>
-      </div>
+      <TokenSelect
+        selectName={selectorName}
+        defaultValue={selectorDefaultValue}
+        onChangeSelect={onChangeSelect}
+      />
       {inputNote ? <span className={inputWithSelectStyles.span}>{inputNote}</span> : ''}
     </div>
   );

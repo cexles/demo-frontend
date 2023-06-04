@@ -6,6 +6,8 @@ import { ethers } from 'ethers';
 import { formatEther } from '@ethersproject/units';
 import { DateTime, Duration } from 'luxon';
 
+import { tokenHelper } from '@/shared/config/token.config';
+
 import OrderHistoryViewStyles from './OrderHistoryView.module.scss';
 import { Props } from './type';
 
@@ -200,10 +202,20 @@ function OrderHistoryView({ orderData }: Props) {
           <div className={OrderHistoryViewStyles.type}>
             <ul className={OrderHistoryViewStyles.tokens}>
               <li>
-                <Image alt="ETH" src="/icons/ETH.svg" width={23} height={23} />
+                <Image
+                  alt={tokenHelper[orderData.order.baseToken.toLowerCase()].name}
+                  src={tokenHelper[orderData.order.baseToken.toLowerCase()].icon}
+                  width={23}
+                  height={23}
+                />
               </li>
               <li>
-                <Image alt="ETH" src="/icons/ETH.svg" width={23} height={23} />
+                <Image
+                  alt={tokenHelper[orderData.order.targetToken.toLowerCase()].name}
+                  src={tokenHelper[orderData.order.targetToken.toLowerCase()].icon}
+                  width={23}
+                  height={23}
+                />
               </li>
             </ul>
           </div>

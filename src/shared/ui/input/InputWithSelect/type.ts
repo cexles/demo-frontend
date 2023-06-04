@@ -3,7 +3,8 @@ export type Props = {
   inputValue?: string;
   inputDisabled: boolean;
   inputNote?: string;
-  selectorName?: string;
+  selectorName: string;
   selectorDefaultValue: string;
+  onChangeSelect: (name, value) => void;
   onChangeInput: (event, value?) => void;
 };

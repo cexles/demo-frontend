@@ -17,6 +17,7 @@ import {
   orderPeriodOptions,
   orderTypes,
 } from '@/shared/config/order.config';
+import { tokenHelper } from '@/shared/config/token.config';
 
 import CreateOrderFormStyles from './CreateOrderForm.module.scss';
 import { OrderData, Props, DCAOrderData, TrailingOrderData } from './type';
@@ -27,8 +28,8 @@ function CreateOrderForm({ type }: Props) {
   const { state: createOrderState, send: createOrder } = useCreateOrder();
   const [orderData, setOrderData] = useState<OrderData>({
     userAddress: account ?? '',
-    baseToken: '0xfDaF650e710cbB5801AA0A152cf4481F70147890',
-    targetToken: '0x429c90F2a384dbD7A6113CC642296e914445d66e',
+    baseToken: '0xfdaf650e710cbb5801aa0a152cf4481f70147890',
+    targetToken: '0x429c90f2a384dbd7a6113cc642296e914445d66e',
     pairFee: 500,
     slippage: 10000,
     baseAmount: utils.parseEther('0'),
@@ -51,7 +52,7 @@ function CreateOrderForm({ type }: Props) {
   const [targetTokenAmount, setTargetTokenAmount] = useState<string>('0');
   const [DCAIntervals, setDCAIntervals] = useState<number>(1);
   const [trailingSwapPercentage, setTrailingSwapPercentage] = useState<number>(25);
-  const tokenBalance = useTokenBalance('0xfDaF650e710cbB5801AA0A152cf4481F70147890', account) ?? 0;
+  const tokenBalance = useTokenBalance(orderData.baseToken, account) ?? 0;
 
   /**
    * useEffect hook for <OrderData> state.
@@ -195,6 +196,22 @@ function CreateOrderForm({ type }: Props) {
   };
 
   /**
+   * Function to update the order data based on the select event.
+   * @param name
+   * @param value
+   */
+  const updateSelect = (name: string, value: string) => {
+    const updatedOrderData = { ...orderData };
+    if (name === 'baseToken') {
+      updatedOrderData[name] = value;
+    }
+    if (name === 'targetToken') {
+      updatedOrderData[name] = value;
+    }
+    setOrderData(updatedOrderData);
+  };
+
+  /**
    * Function to update the order data based on the provided event.
    * Updates the corresponding field in the order data based on the target name of the event.
    * If the target name is 'baseAmount', the value is parsed into Ether and assigned to the field.
@@ -281,8 +298,9 @@ function CreateOrderForm({ type }: Props) {
                 inputDisabled={false}
                 inputNote={`Balance: ${formatEther(tokenBalance)}`}
                 selectorName="baseToken"
-                selectorDefaultValue="TokenA"
+                selectorDefaultValue={orderData.baseToken}
                 onChangeInput={updateOrderData}
+                onChangeSelect={updateSelect}
               />
               {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
               <button type="button" className={CreateOrderFormStyles.swap} />
@@ -291,8 +309,9 @@ function CreateOrderForm({ type }: Props) {
                 inputValue={targetTokenAmount}
                 inputDisabled
                 selectorName="targetToken"
-                selectorDefaultValue="TokenB"
+                selectorDefaultValue={orderData.targetToken}
                 onChangeInput={updateOrderData}
+                onChangeSelect={updateSelect}
               />
             </div>
           </div>
@@ -318,8 +337,10 @@ function CreateOrderForm({ type }: Props) {
                   inputValue={String(DCAData.amountPerPeriod * DCAIntervals)}
                   inputDisabled
                   inputNote={`Balance: ${formatEther(tokenBalance)}`}
-                  selectorDefaultValue="TokenA"
+                  selectorName="baseToken"
+                  selectorDefaultValue={orderData.baseToken}
                   onChangeInput={updateDcaData}
+                  onChangeSelect={updateSelect}
                 />
                 {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                 <div className={CreateOrderFormStyles.swap} />
@@ -327,8 +348,10 @@ function CreateOrderForm({ type }: Props) {
                   inputName="expectedAmount"
                   inputValue="0"
                   inputDisabled
-                  selectorDefaultValue="TokenB"
+                  selectorName="targetToken"
+                  selectorDefaultValue={orderData.targetToken}
                   onChangeInput={updateDcaData}
+                  onChangeSelect={updateSelect}
                 />
               </div>
             </div>
@@ -343,11 +366,10 @@ function CreateOrderForm({ type }: Props) {
                   className="amount-per-period"
                 />
               </h4>
-              <InputWithSelect
+              <InputWithNote
                 inputName="amountPerPeriod"
-                inputDisabled={false}
-                selectorName="baseToken"
-                selectorDefaultValue="TokenA"
+                placeholder="0"
+                note={tokenHelper[orderData.baseToken].name}
                 onChangeInput={updateDcaData}
               />
             </div>
@@ -530,7 +552,7 @@ function CreateOrderForm({ type }: Props) {
         ''
       )}
       <div className={CreateOrderFormStyles.buttonContainer}>
-        <button type="button" onClick={handleCreateOrder}>
+        <button type="button" onClick={handleCreateOrder} disabled={!account}>
           Create order
         </button>
       </div>

@@ -109,6 +109,11 @@
       background-color: var(--connect-button-active);
     }
 
+    &:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
     @include mobile {
       width: calc(100% - 32px);
       margin: 16px;
