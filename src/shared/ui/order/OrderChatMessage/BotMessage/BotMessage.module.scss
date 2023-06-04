@@ -1,0 +1,129 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 36px;
+  max-width: 85%;
+  width: 100%;
+
+  @media (max-width: 1200px) {
+    gap: 16px;
+  }
+
+  @include tablet {
+    max-width: none;
+  }
+}
+
+.avatar {
+  padding: 15px;
+  background: var(--avatar-background);
+  border-radius: 4px;
+  display: flex;
+  align-self: baseline;
+
+  img {
+    width: 24px;
+    max-width: none;
+  }
+
+  @include screen_767 {
+    padding: 0;
+    background: none;
+  }
+}
+
+.withoutAvatar {
+  visibility: hidden;
+}
+
+.message {
+  padding: 16px;
+  border: var(--message-border);
+  background: var(--bot-message-background);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @include mobile {
+    padding: 8px;
+  }
+}
+
+.time {
+  color: var(--time-color);
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 300;
+
+  @include mobile {
+    font-size: 9px;
+    line-height: 11px;
+  }
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: minmax(85px, 185px) 180px max-content;
+  gap: 16px;
+
+  @include tablet {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include screen_767 {
+    grid-template-columns: auto 180px;
+    gap: 8px;
+  }
+
+  @include mobile-medium {
+    grid-template-columns: auto 160px;
+  }
+}
+
+.input {
+  display: flex;
+  width: 100%;
+  padding: 8px 24px;
+  border: 1px solid;
+  border-color: var(--input-border);
+  border-radius: 4px;
+  transition: 0.4s;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--text-color);
+
+  &:hover {
+    border-color: var(--input-hover-border);
+  }
+
+  &:focus {
+    border-color: var(--input-focus-border);
+  }
+}
+
+.button {
+  padding: 8.5px 16px;
+  background: rgba(135, 144, 221, 0.2);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  color: var(--text-color);
+  transition: 0.4s;
+  font-weight: 500;
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  @include screen_767 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+}

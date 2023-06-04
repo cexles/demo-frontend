@@ -7,7 +7,7 @@ import themeReducer from '@/entities/theme/model/slice';
 const preloadedState = {
   theme: {
     orderFormat:
-      typeof window !== 'undefined' ? localStorage.getItem('app-order-format') || 'chat' : 'chat',
+      typeof window !== 'undefined' ? localStorage.getItem('app-order-format') || 'form' : 'form',
   },
 };
 

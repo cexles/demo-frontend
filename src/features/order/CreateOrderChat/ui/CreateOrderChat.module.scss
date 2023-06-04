@@ -1,0 +1,45 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.dialog {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @include mobile {
+    padding: 16px;
+  }
+}
+
+.social {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+}
+
+.socialIcon {
+  margin-left: 25%;
+  display: inline;
+}
+
+.underline {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    content: '';
+    height: 1px;
+    width: 100%;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--text-color);
+    z-index: 1;
+  }
+}
+
+.question {
+  color: rgba(53, 225, 81, 1);
+  cursor: pointer;
+}

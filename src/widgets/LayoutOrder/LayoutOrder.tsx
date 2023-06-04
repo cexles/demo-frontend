@@ -4,6 +4,7 @@ import { useAppSelector } from '@/appLayer/redux/hooks';
 import ChangeOrderFormat from '@/features/theme/ChangeOrderFormat/ui/ChangeOrderFormat';
 import ChangeOrderType from '@/features/order/ChangeOrderType/ui/ChangeOrderType';
 import CreateOrderForm from '@/features/order/CreateOrderForm/ui/CreateOrderForm';
+import CreateOrderChat from '@/features/order/CreateOrderChat/ui/CreateOrderChat';
 import OrderTypeDescription from '@/entities/order/ui/OrderTypeDescription/OrderTypeDescription';
 
 import LayoutOrderStyles from './LayoutOrder.module.scss';
@@ -21,7 +22,7 @@ function LayoutOrder({ type }: Props) {
         </div>
         <OrderTypeDescription type={type} />
       </div>
-      {orderFormat === 'chat' ? '' : <CreateOrderForm type={type} />}
+      {orderFormat === 'chat' ? <CreateOrderChat type={type} /> : <CreateOrderForm type={type} />}
     </section>
   );
 }
