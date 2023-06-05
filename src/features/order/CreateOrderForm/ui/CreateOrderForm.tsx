@@ -53,6 +53,7 @@ function CreateOrderForm({ type }: Props) {
     fixingPerStep: '0',
     step: 50000,
   });
+  const [triggerPrice, setTriggerPrice] = useState<string>('0');
   const [targetTokenAmount, setTargetTokenAmount] = useState<string>('0');
   const [DCAIntervals, setDCAIntervals] = useState<number>(1);
   const [trailingSwapPercentage, setTrailingSwapPercentage] = useState<number>(25);
@@ -172,11 +173,16 @@ function CreateOrderForm({ type }: Props) {
     event: React.ChangeEvent<HTMLInputElement>,
     validatedValue: string,
   ) => {
-    setTargetTokenAmount(
-      (ethers.utils.formatEther(orderData.baseAmount) * Number(validatedValue))
-        .toFixed(2)
-        .toString(),
-    );
+    if (event.target.name === 'baseAmount') {
+      setTargetTokenAmount((validatedValue * Number(triggerPrice)).toFixed(2).toString());
+    } else {
+      setTriggerPrice(validatedValue);
+      setTargetTokenAmount(
+        (ethers.utils.formatEther(orderData.baseAmount) * Number(validatedValue))
+          .toFixed(2)
+          .toString(),
+      );
+    }
   };
 
   /**
@@ -238,6 +244,7 @@ function CreateOrderForm({ type }: Props) {
     const updatedOrderData = { ...orderData };
     if (event.target.name === 'baseAmount') {
       updatedOrderData[event.target.name] = utils.parseEther(validatedValue);
+      calculateTargetToken(event, validatedValue);
     } else if (event.target.name === 'boundOrder') {
       updatedOrderData[event.target.name] = BigNumber.from(validatedValue);
     } else if (event.target.name === 'expiration') {

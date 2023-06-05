@@ -24,10 +24,10 @@ function Order({ params }: { params: { type: string } }) {
       <main className={OrderPageStyles.main}>
         <LayoutOrder type={orderType} />
         {width > 1024 ? (
-          <>
+          <div className={OrderPageStyles.orderAdditional}>
             <OrderChart />
             <OrderHistory />
-          </>
+          </div>
         ) : (
           ''
         )}

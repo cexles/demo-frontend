@@ -24,7 +24,6 @@
 }
 
 .main {
-  padding-bottom: 60px;
   margin: 20px auto 0;
   max-width: 1328px;
   width: 100%;
@@ -32,10 +31,9 @@
   display: grid;
   grid-template-columns: 0.6fr 0.4fr;
   grid-template-rows: auto 1fr;
-  gap: 76px 56px;
+  gap: 0 56px;
   grid-template-areas:
-    'chat chart'
-    'chat follow-us';
+    'chat chat-additional';
   transition: 0.4s;
 
   max-height: calc(100vh - 110px);
@@ -58,4 +56,13 @@
     flex: 1;
     max-height: none;
   }
+}
+
+.orderAdditional {
+  grid-area: chat-additional;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow: -moz-scrollbars-vertical;
+  scrollbar-color: #2f2f37 #8585ad;
 }
