@@ -11,10 +11,14 @@ import { tokenHelper } from '@/shared/config/token.config';
 import OrderHistoryViewStyles from './OrderHistoryView.module.scss';
 import { Props } from './type';
 
-function OrderHistoryView({ orderData }: Props) {
+function OrderHistoryView({ orderData, cancelOrder }: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [orderType, setOrderType] = useState<string>();
   const [orderStatus, setOrderStatus] = useState<string>('Active');
+
+  const handleCancelOrder = () => {
+    cancelOrder(orderData.id);
+  };
 
   useEffect(() => {
     switch (orderData.order.action) {
@@ -95,6 +99,17 @@ function OrderHistoryView({ orderData }: Props) {
                 .toFormat('yyyy-MM-dd HH:mm:ss')}
             </p>
           </li>
+          {orderStatus === 'Active' ? (
+            <button
+              type="button"
+              className={OrderHistoryViewStyles.button}
+              onClick={handleCancelOrder}
+            >
+              Cancel order
+            </button>
+          ) : (
+            ''
+          )}
         </>
       );
     }
@@ -135,6 +150,17 @@ function OrderHistoryView({ orderData }: Props) {
             <h4>Buy amount</h4>
             <p>{Number(formatEther(data[1])).toFixed(4)}</p>
           </li>
+          {orderStatus === 'Active' ? (
+            <button
+              type="button"
+              className={OrderHistoryViewStyles.button}
+              onClick={handleCancelOrder}
+            >
+              Cancel order
+            </button>
+          ) : (
+            ''
+          )}
         </>
       );
     }
@@ -180,6 +206,17 @@ function OrderHistoryView({ orderData }: Props) {
             <h4>Trailing percent</h4>
             <p>{data[2] / 10000}%</p>
           </li>
+          {orderStatus === 'Active' ? (
+            <button
+              type="button"
+              className={OrderHistoryViewStyles.button}
+              onClick={handleCancelOrder}
+            >
+              Cancel order
+            </button>
+          ) : (
+            ''
+          )}
         </>
       );
     }
@@ -192,12 +229,9 @@ function OrderHistoryView({ orderData }: Props) {
 
   return (
     <div>
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
-      <li
-        className={`${OrderHistoryViewStyles.item} ${isOpen && OrderHistoryViewStyles.itemOpen}`}
-        onClick={handleOpenDescription}
-      >
-        <div className={OrderHistoryViewStyles.order}>
+      <li className={`${OrderHistoryViewStyles.item} ${isOpen && OrderHistoryViewStyles.itemOpen}`}>
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+        <div className={OrderHistoryViewStyles.order} onClick={handleOpenDescription}>
           <p className={OrderHistoryViewStyles.time}>{orderData.id.toString()}</p>
           <div className={OrderHistoryViewStyles.type}>
             <ul className={OrderHistoryViewStyles.tokens}>

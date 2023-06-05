@@ -6,6 +6,7 @@ import { useEthers } from '@usedapp/core';
 import ModalContext from '@/appLayer/context/ModalContext';
 import ModalOrderHistory from '@/entities/order/ui/ModalOrderHistory/ModalOrderHistory';
 import useUserOrdersInfo from '@/entities/order/api/getUserOrdersInfo/useUserOrdersInfo';
+import useCancelOrder from '@/entities/order/api/cancelOrder/useCancelOrder';
 import OrderHistoryView from '@/shared/ui/order/OrderHistoryView/OrderHistoryView';
 
 import OrderHistoryStyles from './OrderHistory.module.scss';
@@ -13,7 +14,16 @@ import OrderHistoryStyles from './OrderHistory.module.scss';
 function OrderHistory() {
   const { account } = useEthers();
   const { openModal, handleModal } = useContext(ModalContext);
+  const { send: cancelOrder } = useCancelOrder();
   const orderHistory = useUserOrdersInfo({ wallet: account });
+
+  /**
+   * Function to handle the cancel of an order.
+   * Calls the cancelOrder function with the provided orderId.
+   */
+  const handleCancelOrder = async (orderId: string) => {
+    await cancelOrder([orderId]);
+  };
 
   return (
     <section className={OrderHistoryStyles.section}>
@@ -32,7 +42,13 @@ function OrderHistory() {
             ? Object.keys(orderHistory)
                 .reverse()
                 .slice(0, 5)
-                .map((key) => <OrderHistoryView key={key} orderData={orderHistory[key]} />)
+                .map((key) => (
+                  <OrderHistoryView
+                    key={key}
+                    orderData={orderHistory[key]}
+                    cancelOrder={handleCancelOrder}
+                  />
+                ))
             : ''}
         </ul>
       </div>

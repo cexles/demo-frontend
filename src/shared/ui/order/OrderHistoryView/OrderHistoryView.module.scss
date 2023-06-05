@@ -4,7 +4,6 @@
 .item {
   border: var(--chat-border);
   border-radius: 4px;
-  cursor: pointer;
 
   &:hover {
     border-color: var(--input-hover-border);
@@ -26,6 +25,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
+  cursor: pointer;
 
   @include mobile {
     grid-template-columns: 1fr auto auto;
@@ -143,5 +143,21 @@
       line-height: 13px;
       color: var(--nav-link-color);
     }
+  }
+}
+
+.button {
+  margin-top: 7px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 4px;
+  text-align: center;
+  background-color: #6c757d;
+  color: white;
+  transition: .4s;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: #5a6268;
   }
 }
