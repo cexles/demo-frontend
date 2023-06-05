@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { Line } from 'react-chartjs-2';
 import { DateTime } from 'luxon';
@@ -13,12 +13,15 @@ import {
   Filler,
 } from 'chart.js';
 
+import ThemeContext from '@/appLayer/context/ThemeContext';
+import { COLOR_BLACK, COLOR_LIGHT_GRAY } from '@/shared/lib/theme/colors';
 import { GET_POOL_SWAPS } from '@/shared/lib/graphql/queries';
 
 import ChartStyles from './Chart.module.scss';
 import { Props } from './type';
 
 function Chart({ baseToken, poolId }: Props) {
+  const { theme } = useContext(ThemeContext);
   const [chartValues, setChartValues] = useState<number[]>([]);
   const [chartLabels, setChartLabels] = useState<number[]>([]);
   const { data } = useQuery(GET_POOL_SWAPS, {
@@ -35,7 +38,7 @@ function Chart({ baseToken, poolId }: Props) {
           display: false,
         },
         ticks: {
-          color: 'black',
+          color: theme === 'light' ? COLOR_BLACK : COLOR_LIGHT_GRAY,
           font: {
             size: 10,
             weight: 500,
@@ -51,7 +54,7 @@ function Chart({ baseToken, poolId }: Props) {
           display: false,
         },
         ticks: {
-          color: 'black',
+          color: theme === 'light' ? COLOR_BLACK : COLOR_LIGHT_GRAY,
           font: {
             size: 10,
             weight: 500,
