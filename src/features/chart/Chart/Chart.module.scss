@@ -1,0 +1,47 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 1fr);
+  gap: 32px 24px;
+  grid-template-areas: 'chart value';
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 13px;
+
+  @media (max-width: 1200px) {
+    gap: 32px 16px;
+  }
+
+  @include mobile {
+    gap: 32px 8px;
+  }
+}
+
+.chart {
+  position: relative;
+
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+.value {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.labels {
+  display: flex;
+  gap: 10px;
+  text-transform: uppercase;
+  align-items: center;
+
+  li {
+    text-align: center;
+  }
+}

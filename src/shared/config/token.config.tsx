@@ -36,3 +36,9 @@ export const tokenHelper = {
     icon: '/icons/WETH.svg',
   },
 };
+
+export const poolHelper = {
+  '0x429c90f2a384dbd7a6113cc642296e914445d66e_0xfdaf650e710cbb5801aa0a152cf4481f70147890': {
+    poolId: '0x26001313ad6117dbbeaae71bc187bcbcaf03d3cf',
+  },
+};

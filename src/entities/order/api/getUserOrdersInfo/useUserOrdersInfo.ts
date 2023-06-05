@@ -17,7 +17,7 @@ const useUserOrdersInfo = ({ wallet }: Props) => {
         args: [wallet],
       },
       {
-        refresh: 'never',
+        refresh: 'everyBlock',
       },
     ) ?? {};
 

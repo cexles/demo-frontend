@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import LayoutOrder from '@/widgets/LayoutOrder/LayoutOrder';
 import OrderHistory from '@/widgets/OrderHistory/OrderHistory';
+import OrderChart from '@/widgets/OrderChart/OrderChart';
 import useScreenWidth from '@/shared/lib/theme/useScreenWidth';
 
 import OrderPageStyles from './OrderPage.module.scss';
@@ -22,7 +23,14 @@ function Order({ params }: { params: { type: string } }) {
     <div className={OrderPageStyles.content}>
       <main className={OrderPageStyles.main}>
         <LayoutOrder type={orderType} />
-        {width > 1024 ? <OrderHistory /> : ''}
+        {width > 1024 ? (
+          <>
+            <OrderChart />
+            <OrderHistory />
+          </>
+        ) : (
+          ''
+        )}
       </main>
     </div>
   );

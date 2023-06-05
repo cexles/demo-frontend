@@ -1,0 +1,32 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.section {
+  grid-area: chart;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+
+  @include tablet {
+    margin-bottom: 30px;
+  }
+
+  @include screen_890 {
+    flex-direction: column;
+  }
+}
+
+.title {
+  margin-bottom: 6px;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  text-transform: uppercase;
+}

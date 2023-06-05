@@ -6,6 +6,9 @@ import { BigNumber, ethers, utils } from 'ethers';
 import { formatEther } from '@ethersproject/units';
 import { useEthers, useTokenBalance } from '@usedapp/core';
 
+import { store } from '@/appLayer/redux/store';
+import { useAppDispatch } from '@/appLayer/redux/hooks';
+import { changeBaseToken, changeTargetToken } from '@/entities/order/model/slice';
 import useCreateOrder from '@/entities/order/api/createOrder/useCreateOrder';
 import getTokenApprove from '@/entities/order/api/getTokenApprove/getTokenApprove';
 import InputWithSelect from '@/shared/ui/input/InputWithSelect/InputWithSelect';
@@ -24,12 +27,13 @@ import { OrderData, Props, DCAOrderData, TrailingOrderData } from './type';
 
 function CreateOrderForm({ type }: Props) {
   const { account } = useEthers();
+  const dispatch = useAppDispatch();
   const currentDateTime = DateTime.now();
   const { state: createOrderState, send: createOrder } = useCreateOrder();
   const [orderData, setOrderData] = useState<OrderData>({
     userAddress: account ?? '',
-    baseToken: '0xfdaf650e710cbb5801aa0a152cf4481f70147890',
-    targetToken: '0x429c90f2a384dbd7a6113cc642296e914445d66e',
+    baseToken: store.getState().order.baseToken,
+    targetToken: store.getState().order.targetToken,
     pairFee: 500,
     slippage: 10000,
     baseAmount: utils.parseEther('0'),
@@ -204,9 +208,19 @@ function CreateOrderForm({ type }: Props) {
     const updatedOrderData = { ...orderData };
     if (name === 'baseToken') {
       updatedOrderData[name] = value;
+      dispatch(changeBaseToken(value));
+      if (orderData.targetToken === value) {
+        updatedOrderData.targetToken = orderData.baseToken;
+        dispatch(changeTargetToken(orderData.baseToken));
+      }
     }
     if (name === 'targetToken') {
       updatedOrderData[name] = value;
+      dispatch(changeTargetToken(value));
+      if (orderData.baseToken === value) {
+        updatedOrderData.baseToken = orderData.targetToken;
+        dispatch(changeBaseToken(orderData.targetToken));
+      }
     }
     setOrderData(updatedOrderData);
   };
@@ -303,7 +317,7 @@ function CreateOrderForm({ type }: Props) {
                 onChangeSelect={updateSelect}
               />
               {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-              <button type="button" className={CreateOrderFormStyles.swap} />
+              <span className={CreateOrderFormStyles.swap} />
               <InputWithSelect
                 inputName="aimTargetTokenAmount"
                 inputValue={targetTokenAmount}
@@ -343,7 +357,7 @@ function CreateOrderForm({ type }: Props) {
                   onChangeSelect={updateSelect}
                 />
                 {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-                <div className={CreateOrderFormStyles.swap} />
+                <span className={CreateOrderFormStyles.swap} />
                 <InputWithSelect
                   inputName="expectedAmount"
                   inputValue="0"

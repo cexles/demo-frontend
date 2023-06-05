@@ -17,6 +17,12 @@ function TokenSelect({ selectName, defaultValue, onChangeSelect }: Props) {
           setCurrentToken(token);
         }
       });
+    } else if (currentToken.value !== defaultValue) {
+      allowedTokens.forEach((token) => {
+        if (token.value === defaultValue) {
+          setCurrentToken(token);
+        }
+      });
     }
   }, [currentToken, defaultValue]);
 

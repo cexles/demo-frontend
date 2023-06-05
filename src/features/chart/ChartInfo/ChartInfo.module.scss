@@ -1,0 +1,59 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.information {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @include mobile {
+    gap: 4px;
+  }
+}
+
+.tokens {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icons {
+  display: flex;
+}
+
+.icon {
+  width: 23px;
+  height: 23px;
+
+  &:last-of-type {
+    margin-left: -8px;
+  }
+
+  @include mobile {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.tradeInfo {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 300;
+}
+
+.boltText {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 500;
+}
+
+.greenText {
+  color: rgba(53, 225, 81, 1);
+  font-weight: 500;
+}
+
+.date {
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 13px;
+}

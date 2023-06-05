@@ -70,4 +70,9 @@ export const orderPeriodOptions = [
     name: '1 day',
     value: '86400',
   },
+  {
+    id: crypto.randomUUID(),
+    name: '10 sec',
+    value: '10',
+  },
 ];
