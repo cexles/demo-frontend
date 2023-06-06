@@ -15,7 +15,7 @@ export const allowedTokens = [
     value: '0x429c90f2a384dbd7a6113cc642296e914445d66e',
     label: (
       <div className="select__label">
-        <Image src="/icons/WETH.svg" width={20} height={20} alt="Token B" />
+        <Image src="/icons/KNC.svg" width={20} height={20} alt="Token B" />
         <p>Token B</p>
       </div>
     ),
@@ -33,7 +33,7 @@ export const tokenHelper = {
     name: 'Token B',
     slug: 'ttB',
     decimals: 18,
-    icon: '/icons/WETH.svg',
+    icon: '/icons/KNC.svg',
   },
 };
 

@@ -37,22 +37,20 @@ function ChartInfo({ baseToken, targetToken, poolId }: Props) {
     <div className={ChartInfoStyles.information}>
       <div className={ChartInfoStyles.tokens}>
         <div className={ChartInfoStyles.icons}>
-          <li>
-            <Image
-              alt={tokenHelper[baseToken].name}
-              src={tokenHelper[baseToken].icon}
-              width={23}
-              height={23}
-            />
-          </li>
-          <li>
-            <Image
-              alt={tokenHelper[targetToken].name}
-              src={tokenHelper[targetToken].icon}
-              width={23}
-              height={23}
-            />
-          </li>
+          <Image
+            className={ChartInfoStyles.icon}
+            alt={tokenHelper[baseToken].name}
+            src={tokenHelper[baseToken].icon}
+            width={23}
+            height={23}
+          />
+          <Image
+            className={ChartInfoStyles.icon}
+            alt={tokenHelper[targetToken].name}
+            src={tokenHelper[targetToken].icon}
+            width={23}
+            height={23}
+          />
         </div>
         <p>{`${tokenHelper[baseToken].name}/${tokenHelper[targetToken].name}`}</p>
       </div>
