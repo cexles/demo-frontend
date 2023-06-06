@@ -1,0 +1,74 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--order-page-background);
+  overflow-y: auto;
+}
+
+.menu {
+  background: var(--order-page-background);
+  top: 0;
+  right: -100%;
+  width: 100vw;
+  z-index: 1;
+  transition: right 0.2s;
+  color: var(--text-color);
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @include mobile {
+    gap: 16px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 30px 30px;
+  background-color: var(--header-background);
+
+  @include mobile {
+    padding: 16px;
+  }
+}
+
+.title {
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 23px;
+  text-align: center;
+  padding-left: 25%;
+}
+
+.buttonClose {
+  width: 20px;
+  height: 20px;
+  background-image: var(--close-button-background-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.content {
+  padding: 0 30px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include mobile {
+    padding: 0 16px 100px;
+  }
+}

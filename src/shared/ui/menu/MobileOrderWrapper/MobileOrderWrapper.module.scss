@@ -1,0 +1,23 @@
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
+
+.info {
+  display: none;
+
+  @include tablet {
+    margin-right: 8px;
+    width: 24px;
+    height: 24px;
+    display: block;
+    background-image: url(../../../../../public/icons/Info.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: 0.4s;
+    align-self: center;
+
+    &:hover {
+      opacity: 0.4;
+    }
+  }
+}
