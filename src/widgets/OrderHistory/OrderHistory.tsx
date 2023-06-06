@@ -52,16 +52,7 @@ function OrderHistory() {
             : ''}
         </ul>
       </div>
-      {openModal ? (
-        <button
-          type="button"
-          aria-label="Close order history"
-          className={OrderHistoryStyles.button}
-          onClick={() => handleModal()}
-        >
-          Close order history
-        </button>
-      ) : (
+      {!openModal ? (
         <button
           type="button"
           aria-label="View all"
@@ -70,6 +61,8 @@ function OrderHistory() {
         >
           View all
         </button>
+      ) : (
+        ''
       )}
     </section>
   );
