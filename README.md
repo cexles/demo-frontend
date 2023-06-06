@@ -3,7 +3,10 @@
 This is a [Cexles Finance](https://cexles.finance/) demo frontend for [Chainlink Spring 2023 Hackathon](https://chainlinkspring2023.devpost.com/).
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-![GitHub Licence](https://img.shields.io/github/license/cexles/demo-frontend)
+
+## Documentation
+
+- [Project GitBook](https://docs.cexles.finance/)
 
 ## How to start
 
