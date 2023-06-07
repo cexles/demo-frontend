@@ -58,55 +58,59 @@ function OrderHistoryView({ orderData, cancelOrder }: Props) {
     if (orderData.order.action === 0 || orderData.order.action === 1) {
       return (
         <>
-          <li>
-            <h4>Base token amount</h4>
-            <p>{Number(formatEther(orderData.order.baseAmount)).toFixed(2)}</p>
-          </li>
-          <li>
-            <h4>Trigger rate</h4>
-            <p>
-              {(
-                formatEther(orderData.order.aimTargetTokenAmount) /
-                formatEther(orderData.order.baseAmount)
-              ).toFixed(4)}
-            </p>
-          </li>
-          <li>
-            <h4>Bound order</h4>
-            <p>
-              {orderData.order.boundOrder.toString() !== '0'
-                ? orderData.order.boundOrder.toString()
-                : '-'}
-            </p>
-          </li>
-          <li>
-            <h4>Target token amount</h4>
-            <p>{Number(formatEther(orderData.order.aimTargetTokenAmount)).toFixed(4)}</p>
-          </li>
-          <li>
-            <h4>Execution amount</h4>
-            <p>
-              {Number(formatEther(orderData.resultTokenOut)).toFixed(2) !== '0.00'
-                ? Number(formatEther(orderData.resultTokenOut)).toFixed(4)
-                : '-'}
-            </p>
-          </li>
-          <li>
-            <h4>Expiration</h4>
-            <p>
-              {DateTime.fromMillis(Number(orderData.order.expiration * 1000))
-                .toUTC()
-                .toFormat('yyyy-MM-dd HH:mm:ss')}
-            </p>
-          </li>
+          <ul className={OrderHistoryViewStyles.description}>
+            <li>
+              <h4>Base token amount</h4>
+              <p>{Number(formatEther(orderData.order.baseAmount)).toFixed(2)}</p>
+            </li>
+            <li>
+              <h4>Trigger rate</h4>
+              <p>
+                {(
+                  formatEther(orderData.order.aimTargetTokenAmount) /
+                  formatEther(orderData.order.baseAmount)
+                ).toFixed(4)}
+              </p>
+            </li>
+            <li>
+              <h4>Bound order</h4>
+              <p>
+                {orderData.order.boundOrder.toString() !== '0'
+                  ? orderData.order.boundOrder.toString()
+                  : '-'}
+              </p>
+            </li>
+            <li>
+              <h4>Target token amount</h4>
+              <p>{Number(formatEther(orderData.order.aimTargetTokenAmount)).toFixed(4)}</p>
+            </li>
+            <li>
+              <h4>Execution amount</h4>
+              <p>
+                {Number(formatEther(orderData.resultTokenOut)).toFixed(2) !== '0.00'
+                  ? Number(formatEther(orderData.resultTokenOut)).toFixed(4)
+                  : '-'}
+              </p>
+            </li>
+            <li>
+              <h4>Expiration</h4>
+              <p>
+                {DateTime.fromMillis(Number(orderData.order.expiration * 1000))
+                  .toUTC()
+                  .toFormat('yyyy-MM-dd HH:mm:ss')}
+              </p>
+            </li>
+          </ul>
           {orderStatus === 'Active' ? (
-            <button
-              type="button"
-              className={OrderHistoryViewStyles.button}
-              onClick={handleCancelOrder}
-            >
-              Cancel order
-            </button>
+            <div className={OrderHistoryViewStyles.buttons}>
+              <button
+                type="button"
+                className={`${OrderHistoryViewStyles.button} ${OrderHistoryViewStyles.buttonCancel}`}
+                onClick={handleCancelOrder}
+              >
+                <p>Cancel order</p>
+              </button>
+            </div>
           ) : (
             ''
           )}
@@ -122,42 +126,46 @@ function OrderHistoryView({ orderData, cancelOrder }: Props) {
 
       return (
         <>
-          <li>
-            <h4>Order balance</h4>
-            <p>{Number(formatEther(orderData.order.baseAmount)).toFixed(4)}</p>
-          </li>
-          <li>
-            <h4>Period</h4>
-            <p>
-              {duration.as('days') < 31
-                ? `${duration.toFormat('d')} days`
-                : `${duration.toFormat('M')} month`}
-            </p>
-          </li>
-          <li>
-            <h4>Last execution</h4>
-            <p>
-              {DateTime.fromMillis(Number(orderData.additionalInformation * 1000))
-                .toUTC()
-                .toFormat('yyyy-MM-dd HH:mm:ss')}
-            </p>
-          </li>
-          <li>
-            <h4>Target token balance</h4>
-            <p>{Number(formatEther(orderData.resultTokenOut)).toFixed(4)}</p>
-          </li>
-          <li>
-            <h4>Buy amount</h4>
-            <p>{Number(formatEther(data[1])).toFixed(4)}</p>
-          </li>
+          <ul className={OrderHistoryViewStyles.description}>
+            <li>
+              <h4>Order balance</h4>
+              <p>{Number(formatEther(orderData.order.baseAmount)).toFixed(4)}</p>
+            </li>
+            <li>
+              <h4>Period</h4>
+              <p>
+                {duration.as('days') < 31
+                  ? `${duration.toFormat('d')} days`
+                  : `${duration.toFormat('M')} month`}
+              </p>
+            </li>
+            <li>
+              <h4>Last execution</h4>
+              <p>
+                {DateTime.fromMillis(Number(orderData.additionalInformation * 1000))
+                  .toUTC()
+                  .toFormat('yyyy-MM-dd HH:mm:ss')}
+              </p>
+            </li>
+            <li>
+              <h4>Target token balance</h4>
+              <p>{Number(formatEther(orderData.resultTokenOut)).toFixed(4)}</p>
+            </li>
+            <li>
+              <h4>Buy amount</h4>
+              <p>{Number(formatEther(data[1])).toFixed(4)}</p>
+            </li>
+          </ul>
           {orderStatus === 'Active' ? (
-            <button
-              type="button"
-              className={OrderHistoryViewStyles.button}
-              onClick={handleCancelOrder}
-            >
-              Cancel order
-            </button>
+            <div className={OrderHistoryViewStyles.buttons}>
+              <button
+                type="button"
+                className={`${OrderHistoryViewStyles.button} ${OrderHistoryViewStyles.buttonCancel}`}
+                onClick={handleCancelOrder}
+              >
+                <p>Cancel order</p>
+              </button>
+            </div>
           ) : (
             ''
           )}
@@ -172,48 +180,52 @@ function OrderHistoryView({ orderData, cancelOrder }: Props) {
 
       return (
         <>
-          <li>
-            <h4>Order balance</h4>
-            <p>{Number(formatEther(orderData.order.baseAmount)).toFixed(4)}</p>
-          </li>
-          <li>
-            <h4>Target rate</h4>
-            {(
-              Number(formatEther(orderData.order.aimTargetTokenAmount)) /
-              Number(formatEther(data[0]))
-            ).toFixed(4)}
-          </li>
-          <li>
-            <h4>Sell at step</h4>
-            {Number(formatEther(data[1])).toFixed(4)}
-          </li>
-          <li>
-            <h4>Target token balance</h4>
-            <p>{Number(formatEther(orderData.resultTokenOut)).toFixed(4)}</p>
-          </li>
-          <li>
-            <h4>Last sell rate</h4>
-            <p>
-              {Number(formatEther(orderData.additionalInformation)).toFixed(2) !== '0.00'
-                ? (
-                    Number(formatEther(orderData.additionalInformation)) /
-                    Number(formatEther(data[0]))
-                  ).toFixed(4)
-                : '-'}
-            </p>
-          </li>
-          <li>
-            <h4>Trailing percent</h4>
-            <p>{data[2] / 10000}%</p>
-          </li>
+          <ul className={OrderHistoryViewStyles.description}>
+            <li>
+              <h4>Order balance</h4>
+              <p>{Number(formatEther(orderData.order.baseAmount)).toFixed(4)}</p>
+            </li>
+            <li>
+              <h4>Target rate</h4>
+              {(
+                Number(formatEther(orderData.order.aimTargetTokenAmount)) /
+                Number(formatEther(data[0]))
+              ).toFixed(4)}
+            </li>
+            <li>
+              <h4>Sell at step</h4>
+              {Number(formatEther(data[1])).toFixed(4)}
+            </li>
+            <li>
+              <h4>Target token balance</h4>
+              <p>{Number(formatEther(orderData.resultTokenOut)).toFixed(4)}</p>
+            </li>
+            <li>
+              <h4>Last sell rate</h4>
+              <p>
+                {Number(formatEther(orderData.additionalInformation)).toFixed(2) !== '0.00'
+                  ? (
+                      Number(formatEther(orderData.additionalInformation)) /
+                      Number(formatEther(data[0]))
+                    ).toFixed(4)
+                  : '-'}
+              </p>
+            </li>
+            <li>
+              <h4>Trailing percent</h4>
+              <p>{data[2] / 10000}%</p>
+            </li>
+          </ul>
           {orderStatus === 'Active' ? (
-            <button
-              type="button"
-              className={OrderHistoryViewStyles.button}
-              onClick={handleCancelOrder}
-            >
-              Cancel order
-            </button>
+            <div className={OrderHistoryViewStyles.buttons}>
+              <button
+                type="button"
+                className={`${OrderHistoryViewStyles.button} ${OrderHistoryViewStyles.buttonCancel}`}
+                onClick={handleCancelOrder}
+              >
+                <p>Cancel order</p>
+              </button>
+            </div>
           ) : (
             ''
           )}
@@ -274,7 +286,7 @@ function OrderHistoryView({ orderData, cancelOrder }: Props) {
             }`}
           />
         </div>
-        {isOpen && <ul className={OrderHistoryViewStyles.description}>{orderDescription()}</ul>}
+        {isOpen && orderDescription()}
       </li>
     </div>
   );
