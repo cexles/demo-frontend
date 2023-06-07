@@ -57,6 +57,13 @@
   }
 }
 
+.typeWrapper {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  grid-template-rows: auto;
+  grid-gap: 10px;
+}
+
 .chat::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 3px;

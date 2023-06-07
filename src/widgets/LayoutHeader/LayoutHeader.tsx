@@ -11,7 +11,6 @@ import ChangeTheme from '@/features/theme/ChangeTheme/ui/ChangeTheme';
 import Menu from '@/features/navigation/Menu/ui/Menu';
 import useScreenWidth from '@/shared/lib/theme/useScreenWidth';
 import MobileMenuWrapper from '@/shared/ui/menu/MobileMenuWrapper/MobileMenuWrapper';
-import MobileOrderWrapper from '@/shared/ui/menu/MobileOrderWrapper/MobileOrderWrapper';
 import ChainSelect from '@/shared/ui/select/ChainSelect/ChainSelect';
 
 import LayoutHeaderStyles from './LayoutHeader.module.scss';
@@ -45,7 +44,7 @@ function LayoutHeader() {
         </div>
         <Menu />
         <div className={LayoutHeaderStyles.buttons}>
-          {width > 1024 ? <ChangeTheme /> : <MobileOrderWrapper />}
+          {width > 1024 && <ChangeTheme />}
           <ChainSelect />
           <ConnectWallet width={width} />
         </div>

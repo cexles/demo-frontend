@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 
 import { orderTypes } from '@/shared/config/order.config';
 
+import ChangeOrderTypeStyles from './ChangeOrderType.module.scss';
 import { Props } from './type';
 
 function ChangeOrderType({ current }: Props) {
@@ -27,13 +28,15 @@ function ChangeOrderType({ current }: Props) {
   };
 
   return (
-    <Select
-      value={currentType}
-      options={formatOrderTypes(orderTypes)}
-      isSearchable={false}
-      classNamePrefix="operation-select"
-      onChange={changeOrderType}
-    />
+    <div className={ChangeOrderTypeStyles.selectWrapper}>
+      <Select
+        value={currentType}
+        options={formatOrderTypes(orderTypes)}
+        isSearchable={false}
+        classNamePrefix="operation-select"
+        onChange={changeOrderType}
+      />
+    </div>
   );
 }
 
