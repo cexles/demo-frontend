@@ -17,7 +17,7 @@ import {
 
 import ThemeContext from '@/appLayer/context/ThemeContext';
 import { COLOR_BLACK, COLOR_LIGHT_GRAY } from '@/shared/lib/theme/colors';
-import { GET_POOL_SWAPS } from '@/shared/lib/graphql/queries';
+import { GET_POOL_TIME_SWAPS } from '@/shared/lib/graphql/queries';
 
 import ChartStyles from './Chart.module.scss';
 import { Props } from './type';
@@ -26,11 +26,15 @@ function Chart({ baseToken, poolId }: Props) {
   const { theme } = useContext(ThemeContext);
   const [chartValues, setChartValues] = useState<number[]>([]);
   const [chartLabels, setChartLabels] = useState<number[]>([]);
-  const { data } = useQuery(GET_POOL_SWAPS, {
+  const [currentTime] = useState<string>(
+    DateTime.now().toUTC().minus({ minute: 30 }).toSeconds().toString().split('.')[0],
+  );
+  const { data } = useQuery(GET_POOL_TIME_SWAPS, {
     variables: {
       poolId,
-      first: 10,
+      timestamp: String(currentTime),
     },
+    pollInterval: 10000,
   });
   const options = {
     borderColor: '#87DD95',
@@ -47,6 +51,7 @@ function Chart({ baseToken, poolId }: Props) {
           },
           minRotation: 0,
           maxRotation: 0,
+          maxTicksLimit: 10,
         },
         display: true,
       },
@@ -123,7 +128,7 @@ function Chart({ baseToken, poolId }: Props) {
           return gradient;
         },
         tension: 0.4,
-        pointRadius: 0,
+        pointRadius: 3,
       },
     ],
   };

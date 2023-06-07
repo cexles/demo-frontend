@@ -17,6 +17,7 @@ function ChartInfo({ baseToken, targetToken, poolId }: Props) {
     variables: {
       poolId,
     },
+    pollInterval: 10000,
   });
   const currentDateTime = DateTime.now().toUTC();
 
