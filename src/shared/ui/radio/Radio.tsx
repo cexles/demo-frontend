@@ -1,4 +1,4 @@
-import radioStyles from './radio.module.scss';
+import radioStyles from './Radio.module.scss';
 import { Props } from './type';
 
 function Radio({ options, name, onChangeInput }: Props) {
