@@ -1,8 +1,30 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 
 import LayoutFooter from '@/widgets/LayoutFooter/LayoutFooter';
 
 import styles from './styles.module.scss';
+
+export const metadata: Metadata = {
+  title: 'Cexles Finance | The Ultimate Decentralized Trading Platform',
+  description:
+    'Our decentralized trading platform offers a wide range of trading instruments and instant access to DeFi liquidity with automated on-chain order execution.',
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Cexles Finance | The Ultimate Decentralized Trading Platform',
+    description:
+      'Our decentralized trading platform offers a wide range of trading instruments and instant access to DeFi liquidity with automated on-chain order execution.',
+    creator: '@CexlesFinance',
+  },
+  openGraph: {
+    title: 'Cexles Finance | The Ultimate Decentralized Trading Platform',
+    description:
+      'Our decentralized trading platform offers a wide range of trading instruments and instant access to DeFi liquidity with automated on-chain order execution.',
+    url: 'https://cexles.finance/',
+    locale: 'en_US',
+    type: 'website',
+  },
+};
 
 function Index() {
   return (

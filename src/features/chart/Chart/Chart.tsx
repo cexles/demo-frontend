@@ -1,3 +1,5 @@
+'use client';
+
 import { useContext, useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { Line } from 'react-chartjs-2';

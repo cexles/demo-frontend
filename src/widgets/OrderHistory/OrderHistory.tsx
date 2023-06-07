@@ -8,6 +8,7 @@ import ModalOrderHistory from '@/entities/order/ui/ModalOrderHistory/ModalOrderH
 import useUserOrdersInfo from '@/entities/order/api/getUserOrdersInfo/useUserOrdersInfo';
 import useCancelOrder from '@/entities/order/api/cancelOrder/useCancelOrder';
 import OrderHistoryView from '@/shared/ui/order/OrderHistoryView/OrderHistoryView';
+import useScreenWidth from '@/shared/lib/theme/useScreenWidth';
 
 import OrderHistoryStyles from './OrderHistory.module.scss';
 
@@ -16,6 +17,7 @@ function OrderHistory() {
   const { openModal, handleModal } = useContext(ModalContext);
   const { send: cancelOrder } = useCancelOrder();
   const orderHistory = useUserOrdersInfo({ wallet: account });
+  const width = useScreenWidth();
 
   /**
    * Function to handle the cancel of an order.
@@ -24,6 +26,8 @@ function OrderHistory() {
   const handleCancelOrder = async (orderId: string) => {
     await cancelOrder([orderId]);
   };
+
+  if (width < 1024 && !openModal) return '';
 
   return (
     <section className={OrderHistoryStyles.section}>
