@@ -257,19 +257,21 @@
 }
 
 .tokenButton {
-  width: 28px;
-  height: 28px;
+  display: flex;
   justify-self: end;
+  justify-content: center;
+  height: 28px;
+  padding: 5px;
+  gap: 5px;
   border: 1px solid #8790dd;
-  filter: drop-shadow(0px 15px 40px rgba(0, 0, 0, 0.1));
   border-radius: 4px;
+  filter: drop-shadow(0px 15px 40px rgba(0, 0, 0, 0.1));
   cursor: pointer;
   position: relative;
-  display: flex;
   align-items: center;
-  justify-content: center;
   transition: 0.4s;
-
+  font-size: 12px;
+  color: #8790dd;
   &:hover {
     opacity: 0.4;
   }

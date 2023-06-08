@@ -76,7 +76,9 @@ function ModalUserBalance() {
                         type="button"
                         className={ModalUserBalanceStyles.tokenButton}
                         onClick={() => handleWithdrawToken(key.token, key.balance)}
-                      />
+                      >
+                        Withdraw
+                      </button>
                     </li>
                   ))}
                 </ul>
