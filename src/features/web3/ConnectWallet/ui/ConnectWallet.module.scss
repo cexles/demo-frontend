@@ -38,12 +38,17 @@
   padding: 6px 8px;
   color: var(--text-color);
   border: 1px solid rgba(135, 144, 221, 0.3);
+  border-radius: 4px;
   box-shadow: var(--connect-button-shadow);
   background-color: rgba(135, 144, 221, 0.15);
   flex-direction: row;
   font-weight: 265;
   font-size: 12px;
   line-height: 15px;
+
+  &:hover {
+    background-color: var(--connect-button-active);
+  }
 }
 
 .cancel {
@@ -71,6 +76,7 @@
     font-weight: 300;
     font-size: 16px;
     line-height: 21px;
+    cursor: pointer;
   }
 
   h3 {

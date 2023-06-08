@@ -1,13 +1,17 @@
 'use client';
 
-import React from 'react';
+import React, { useContext } from 'react';
 import Image from 'next/image';
 import { useEthers } from '@usedapp/core';
+
+import ModalContext from '@/appLayer/context/ModalContext';
+import ModalUserBalance from '@/entities/user/ui/ModalUserBalance/ModalUserBalance';
 
 import ConnectWalletStyles from './ConnectWallet.module.scss';
 
 function ConnectWallet() {
   const { account, activateBrowserWallet, deactivate } = useEthers();
+  const { handleModal } = useContext(ModalContext);
 
   function concise(str) {
     const str1 = str.substring(0, 6);
@@ -19,7 +23,10 @@ function ConnectWallet() {
   if (account) {
     return (
       <div className={ConnectWalletStyles.walletConnected}>
-        <p>{concise(account)}</p>
+        <div className={ConnectWalletStyles.container}>
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
+          <p onClick={() => handleModal(<ModalUserBalance />)}>{concise(account)}</p>
+        </div>
         <button
           type="button"
           aria-label="disconnect"

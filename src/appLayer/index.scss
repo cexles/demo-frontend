@@ -88,6 +88,13 @@ html[data-theme='dark'] {
   --tooltip-background-color: #010417;
   --tooltip-filter: drop-shadow(0px 0px 1px rgba(26, 32, 36, 0.32))
     drop-shadow(0px 8px 16px rgba(91, 104, 113, 0.24));
+
+  --balance-border-color: #202126;
+  --balace-header-background: #080a1b;
+  --balace-tabs-background: #0d0f23;
+  --balance-total-tokens-background: rgba(255, 255, 255, 0.05);
+  --balance-tokens-border: rgba(255, 255, 255, 0.2);
+  --all-withdraw-image: url(../../public/icons/CaretDoubleRight.svg);
 }
 
 html[data-theme='light'] {
@@ -161,4 +168,11 @@ html[data-theme='light'] {
   --tooltip-background-color: #ffffff;
   --tooltip-filter: drop-shadow(0px 0px 1px rgba(26, 32, 36, 0.32))
     drop-shadow(0px 8px 16px rgba(91, 104, 113, 0.24));
+
+  --balance-border-color: #dadbdf;
+  --balace-header-background: #f4f5fb;
+  --balace-tabs-background: #ffffff;
+  --balance-total-tokens-background: #ffffff;
+  --balance-tokens-border: rgba(0, 0, 0, 0.1);
+  --all-withdraw-image: url(../../public/icons/CaretDoubleRightDark.svg);
 }

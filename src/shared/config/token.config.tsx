@@ -28,12 +28,14 @@ export const tokenHelper = {
     slug: 'ttA',
     decimals: 18,
     icon: '/tokens/ETH.svg',
+    explorer: 'https://goerli.etherscan.io/address/0xfdaf650e710cbb5801aa0a152cf4481f70147890',
   },
   '0x429c90f2a384dbd7a6113cc642296e914445d66e': {
     name: 'Token B',
     slug: 'ttB',
     decimals: 18,
     icon: '/tokens/KNC.svg',
+    explorer: 'https://goerli.etherscan.io/address/0x429c90f2a384dbd7a6113cc642296e914445d66e',
   },
 };
 

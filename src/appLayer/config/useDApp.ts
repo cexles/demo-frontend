@@ -5,6 +5,7 @@ const config: Config = {
   readOnlyUrls: {
     [Goerli.chainId]: process.env.NEXT_PUBLIC_GOERLI_RPC,
   },
+  multicallVersion: 2 as const,
 };
 
 export default config;
