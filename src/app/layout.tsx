@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { Analytics } from '@vercel/analytics/dist/react';
 
 import Providers from '@/appLayer/providers/Providers';
 import LayoutHeader from '@/widgets/LayoutHeader/LayoutHeader';
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </div>
         </Providers>
+        <Analytics />
       </body>
     </html>
   );

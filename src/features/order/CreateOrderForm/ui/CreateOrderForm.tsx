@@ -5,6 +5,7 @@ import { DateTime } from 'luxon';
 import { BigNumber, ethers, utils } from 'ethers';
 import { formatEther } from '@ethersproject/units';
 import { useEthers, useTokenBalance } from '@usedapp/core';
+import va from '@vercel/analytics';
 
 import { store } from '@/appLayer/redux/store';
 import { useAppDispatch } from '@/appLayer/redux/hooks';
@@ -158,6 +159,9 @@ function CreateOrderForm({ type }: Props) {
           amount: orderData.baseAmount,
         }).then(() => handleCreateOrder());
       }
+    }
+    if (createOrderState.status === 'Success') {
+      va.track('Order', { type, format: 'form' });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [createOrderState]);
