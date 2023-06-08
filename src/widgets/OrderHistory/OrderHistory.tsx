@@ -61,7 +61,9 @@ function OrderHistory() {
           type="button"
           aria-label="View all"
           className={OrderHistoryStyles.button}
-          onClick={() => handleModal(<ModalOrderHistory orders={orderHistory} />)}
+          onClick={() =>
+            handleModal(<ModalOrderHistory orders={orderHistory} cancelOrder={handleCancelOrder} />)
+          }
         >
           View all
         </button>

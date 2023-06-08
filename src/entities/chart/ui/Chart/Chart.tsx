@@ -1,10 +1,9 @@
 'use client';
 
 import { useContext, useEffect, useState } from 'react';
-import { useQuery } from '@apollo/client';
 import { Line } from 'react-chartjs-2';
+import { useQuery } from '@apollo/client';
 import { DateTime } from 'luxon';
-import Decimal from 'decimal.js';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -16,6 +15,7 @@ import {
 } from 'chart.js';
 
 import ThemeContext from '@/appLayer/context/ThemeContext';
+import convertPrice from '@/entities/chart/lib/convertPrice';
 import { COLOR_BLACK, COLOR_LIGHT_GRAY } from '@/shared/lib/theme/colors';
 import { GET_POOL_TIME_SWAPS } from '@/shared/lib/graphql/queries';
 
@@ -89,16 +89,12 @@ function Chart({ baseToken, poolId }: Props) {
       const chartLabelData = [];
 
       data.pool.swaps.forEach((swap) => {
-        const price = new Decimal(swap.sqrtPriceX96)
-          .dividedBy(new Decimal(2).pow(96))
-          .pow(2)
-          .toFixed(4)
-          .toString();
+        const price = convertPrice(swap.sqrtPriceX96);
         if (data.pool.token0.id === baseToken) {
-          chartValueData.push(Number(price));
+          chartValueData.push(price);
         }
         if (data.pool.token1.id === baseToken) {
-          chartValueData.push(1 / Number(price));
+          chartValueData.push(1 / price);
         }
         chartLabelData.push(
           DateTime.fromSeconds(parseInt(swap.timestamp, 10)).toUTC().toFormat('HH:mm'),

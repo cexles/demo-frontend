@@ -1,5 +1,5 @@
-@import '../../../../../appLayer/styles/colors';
-@import '../../../../../appLayer/styles/breakpoints';
+@import './src/appLayer/styles/colors';
+@import './src/appLayer/styles/breakpoints';
 
 .header {
   padding: 13.5px 16px;
@@ -9,7 +9,7 @@
   z-index: 2;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  gap: 10px
 }
 
 .menuClose {

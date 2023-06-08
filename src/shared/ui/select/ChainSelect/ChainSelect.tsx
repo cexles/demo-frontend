@@ -19,7 +19,7 @@ function ChainSelect() {
         value: Goerli.chainId,
         label: (
           <div className="select__label">
-            <Image src="/icons/ETH.svg" width={20} height={20} alt="Goerli" />
+            <Image src="/tokens/ETH.svg" width={20} height={20} alt="Goerli" />
             <p>Goerli</p>
           </div>
         ),

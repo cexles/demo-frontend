@@ -6,12 +6,11 @@ import ChangeOrderType from '@/features/order/ChangeOrderType/ui/ChangeOrderType
 import CreateOrderForm from '@/features/order/CreateOrderForm/ui/CreateOrderForm';
 import CreateOrderChat from '@/features/order/CreateOrderChat/ui/CreateOrderChat';
 import OrderTypeDescription from '@/entities/order/ui/OrderTypeDescription/OrderTypeDescription';
-import MobileOrderWrapper from '@/shared/ui/menu/MobileOrderWrapper/MobileOrderWrapper';
 
 import LayoutOrderStyles from './LayoutOrder.module.scss';
 import { Props } from './type';
 
-function LayoutOrder({ type }: Props) {
+function LayoutOrder({ type, children }: Props) {
   const orderFormat = useAppSelector((state) => state.theme.orderFormat);
 
   return (
@@ -20,7 +19,7 @@ function LayoutOrder({ type }: Props) {
         <div className={LayoutOrderStyles.wrapper}>
           <div className={LayoutOrderStyles.typeWrapper}>
             <ChangeOrderType current={type} />
-            <MobileOrderWrapper />
+            {children}
           </div>
           <ChangeOrderFormat />
         </div>

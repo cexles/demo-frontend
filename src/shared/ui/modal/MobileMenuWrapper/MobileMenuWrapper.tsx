@@ -3,17 +3,12 @@
 import { useContext } from 'react';
 
 import ModalContext from '@/appLayer/context/ModalContext';
-import ModalMenuMobile from '@/widgets/ModalMenuMobile/ModalMenuMobile';
 
 import MobileMenuWrapperStyles from './MobileMenuWrapper.module.scss';
 import { Props } from './type';
 
-function MobileMenuWrapper({ width }: Props) {
+function MobileMenuWrapper({ children }: Props) {
   const { openModal, handleModal } = useContext(ModalContext);
-
-  if (width >= 1200) {
-    return '';
-  }
 
   return openModal ? (
     <button
@@ -27,7 +22,7 @@ function MobileMenuWrapper({ width }: Props) {
       type="button"
       aria-label="Open menu"
       className={MobileMenuWrapperStyles.menu}
-      onClick={() => handleModal(<ModalMenuMobile />)}
+      onClick={() => handleModal(<div>{children}</div>)}
     />
   );
 }

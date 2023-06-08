@@ -3,19 +3,13 @@
 import { useContext } from 'react';
 
 import ModalContext from '@/appLayer/context/ModalContext';
-import useCancelOrder from '@/entities/order/api/cancelOrder/useCancelOrder';
 import OrderHistoryView from '@/shared/ui/order/OrderHistoryView/OrderHistoryView';
 
 import ModalOrderHistoryStyles from './ModalOrderHistory.module.scss';
 import { Props } from './type';
 
-function ModalOrderHistory({ orders }: Props) {
+function ModalOrderHistory({ orders, cancelOrder }: Props) {
   const { handleModal } = useContext(ModalContext);
-  const { send: cancelOrder } = useCancelOrder();
-
-  const handleCancelOrder = async (orderId: string) => {
-    await cancelOrder([orderId]);
-  };
 
   return (
     <>
@@ -48,7 +42,7 @@ function ModalOrderHistory({ orders }: Props) {
                         <OrderHistoryView
                           key={key}
                           orderData={orders[key]}
-                          cancelOrder={handleCancelOrder}
+                          cancelOrder={cancelOrder}
                         />
                       ))
                   : ''}

@@ -9,3 +9,86 @@
   flex: 1;
   justify-content: center;
 }
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--welcome-page-background);
+  overflow-y: auto;
+}
+
+.container {
+  width: 100%;
+  backdrop-filter: blur(50px);
+  display: flex;
+  flex-direction: column;
+}
+
+.menu {
+  background-color: var(--order-page-background);
+  position: absolute;
+  top: 0;
+  right: -100%;
+  width: 100vw;
+  z-index: 1;
+  transition: right 0.2s;
+}
+
+.menuOpen {
+  display: block;
+  right: 0;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+}
+
+.content {
+  padding: 65px 20px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 100vh;
+
+  @include mobile {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 100px;
+  }
+}
+
+.main {
+  margin-bottom: 47px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navLink {
+  color: var(--nav-link-color);
+  font-size: 18px;
+  line-height: 23px;
+  font-weight: 300;
+}
+
+.navLinkActive {
+  color: var(--text-color);
+}
+
+.wrapper {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 156px 1fr;
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.wrapperOneColumn {
+  grid-template-columns: 1fr;
+  width: 100%;
+}

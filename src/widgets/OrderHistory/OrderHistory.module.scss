@@ -47,15 +47,6 @@
   line-height: 31px;
 }
 
-.selects {
-  display: flex;
-  gap: 8px;
-
-  li {
-    width: 130px;
-  }
-}
-
 .table {
   padding-top: 16px;
   display: flex;
@@ -101,12 +92,6 @@
     transform: translateY(-50%);
     right: -8px;
     transition: 0.2s;
-  }
-}
-
-.buttonArrowUp {
-  &::after {
-    transform: translateY(-50%) rotate(270deg);
   }
 }
 

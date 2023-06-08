@@ -51,8 +51,7 @@ function OrderHistoryView({ orderData, cancelOrder }: Props) {
     } else {
       setOrderStatus('Closed');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [orderData.order.expiration, orderData.status]);
+  }, [orderData]);
 
   const orderDescription = () => {
     if (orderData.order.action === 0 || orderData.order.action === 1) {

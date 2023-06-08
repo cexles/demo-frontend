@@ -7,6 +7,7 @@ import ThemeContext from '@/appLayer/context/ThemeContext';
 import { COLOR_WHITE, COLOR_BLACK } from '@/shared/lib/theme/colors';
 import GithubLink from '@/shared/ui/links/GithubLink/GithubLink';
 import TwitterLink from '@/shared/ui/links/TwitterLink/TwitterLink';
+import DiscordLink from '@/shared/ui/links/DiscordLink/DiscordLink';
 
 import LayoutFooterStyles from './LayoutFooter.module.scss';
 
@@ -28,6 +29,14 @@ function LayoutFooter() {
           <li>
             <TwitterLink
               link="https://twitter.com/CexlesFinance"
+              color={theme === 'light' ? COLOR_BLACK : COLOR_WHITE}
+              width="24"
+              height="24"
+            />
+          </li>
+          <li>
+            <DiscordLink
+              link=""
               color={theme === 'light' ? COLOR_BLACK : COLOR_WHITE}
               width="24"
               height="24"

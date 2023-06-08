@@ -6,7 +6,6 @@ import Image from 'next/image';
 
 import ThemeContext from '@/appLayer/context/ThemeContext';
 import ModalContext from '@/appLayer/context/ModalContext';
-import ChangeTheme from '@/features/theme/ChangeTheme/ui/ChangeTheme';
 
 import ModalMenuHeaderStyles from './ModalMenuHeader.module.scss';
 
@@ -31,10 +30,9 @@ function ModalMenuHeader() {
           alt="Logo"
         />
         <Link className={ModalMenuHeaderStyles.demo} href="/">
-          demo simulation
+          Alpha version
         </Link>
       </div>
-      <ChangeTheme />
     </div>
   );
 }

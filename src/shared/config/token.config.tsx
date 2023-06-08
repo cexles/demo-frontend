@@ -6,7 +6,7 @@ export const allowedTokens = [
     value: '0xfdaf650e710cbb5801aa0a152cf4481f70147890',
     label: (
       <div className="select__label">
-        <Image src="/icons/ETH.svg" width={20} height={20} alt="Token A" />
+        <Image src="/tokens/ETH.svg" width={20} height={20} alt="Token A" />
         <p>Token A</p>
       </div>
     ),
@@ -15,7 +15,7 @@ export const allowedTokens = [
     value: '0x429c90f2a384dbd7a6113cc642296e914445d66e',
     label: (
       <div className="select__label">
-        <Image src="/icons/KNC.svg" width={20} height={20} alt="Token B" />
+        <Image src="/tokens/KNC.svg" width={20} height={20} alt="Token B" />
         <p>Token B</p>
       </div>
     ),
@@ -27,13 +27,13 @@ export const tokenHelper = {
     name: 'Token A',
     slug: 'ttA',
     decimals: 18,
-    icon: '/icons/ETH.svg',
+    icon: '/tokens/ETH.svg',
   },
   '0x429c90f2a384dbd7a6113cc642296e914445d66e': {
     name: 'Token B',
     slug: 'ttB',
     decimals: 18,
-    icon: '/icons/KNC.svg',
+    icon: '/tokens/KNC.svg',
   },
 };
 
