@@ -49,7 +49,7 @@ function ModalUserBalance() {
               <div className={ModalUserBalanceStyles.tabs}>
                 <ul className={ModalUserBalanceStyles.tokens}>
                   {userBalance.map((key) => (
-                    <li className={ModalUserBalanceStyles.token}>
+                    <li key={key.token} className={ModalUserBalanceStyles.token}>
                       <div className={ModalUserBalanceStyles.tokenInner}>
                         <Image
                           src={tokenHelper[key.token].icon}
