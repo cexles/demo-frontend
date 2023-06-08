@@ -3,6 +3,7 @@
 import React, { useContext } from 'react';
 import Image from 'next/image';
 import { useEthers } from '@usedapp/core';
+import va from '@vercel/analytics';
 
 import ModalContext from '@/appLayer/context/ModalContext';
 import ModalUserBalance from '@/entities/user/ui/ModalUserBalance/ModalUserBalance';
@@ -18,6 +19,11 @@ function ConnectWallet() {
     const str2 = str.substring(str.length - 4);
 
     return `${str1}...${str2}`;
+  }
+
+  function handleConnectWallet() {
+    activateBrowserWallet();
+    va.track('Connect wallet');
   }
 
   if (account) {
@@ -41,7 +47,7 @@ function ConnectWallet() {
     <button
       type="button"
       className={ConnectWalletStyles.connectButton}
-      onClick={() => activateBrowserWallet()}
+      onClick={() => handleConnectWallet()}
     >
       <Image src="/icons/wallet.svg" width={16} height={16} alt="Wallet" />
       <p>Connect wallet</p>
