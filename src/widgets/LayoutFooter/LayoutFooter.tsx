@@ -36,7 +36,7 @@ function LayoutFooter() {
           </li>
           <li>
             <DiscordLink
-              link=""
+              link="https://discord.gg/Tv6ERdEU"
               color={theme === 'light' ? COLOR_BLACK : COLOR_WHITE}
               width="24"
               height="24"
